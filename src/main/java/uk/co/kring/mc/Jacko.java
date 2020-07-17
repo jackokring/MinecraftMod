@@ -85,15 +85,15 @@ public class Jacko
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
             // register a new block here
-            LOGGER.info("HELLO from Register Block");
+            LOGGER.info("HELLO from Register Block");//TODO??
         }
     }
 
-    Block unlock = new OreBlock(Block.Properties.create(Material.IRON)
-            .hardnessAndResistance(1f, 1f) //well hard?
-            .sound(SoundType.ANVIL)
+    Block unlock = new OreBlock(Block.Properties.create(Material.ROCK)
+            .hardnessAndResistance(3f, 3f) //emerald level
+            .sound(SoundType.STONE)
             .slipperiness(0.5f)
-            .harvestTool(ToolType.HOE)
+            .harvestTool(ToolType.PICKAXE)
     );
 
     @SubscribeEvent
