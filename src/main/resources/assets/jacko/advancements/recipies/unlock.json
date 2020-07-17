@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "requirements": [
+    [
+      [ "has_item_unlock" ],
+      [ "has_the_recipe_unlock" ]
+    ]
+  ],
+  "criteria": {
+    "has_item_unlock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "jacko:unlock"
+          }
+        ]
+      }
+    },
+    "has_the_recipe_unlock": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jacko:unlock_for_emerald"
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "jacko:unlock_for_emerald"
+    ]
+  }
+}
