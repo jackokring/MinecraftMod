@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xx",
+    "uu"
+  ],
+  "key":
+  {
+    "u":
+    {
+      "item": "jacko:unlock"
+    },
+    "x":
+    {
+      "item": "minecraft:emerald"
+    }
+  },
+  "result":
+  {
+    "item": "jacko:book",
+    "count": 1
+  }
+}
