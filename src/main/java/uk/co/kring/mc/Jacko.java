@@ -1,30 +1,35 @@
 package uk.co.kring.mc;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.*;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.OreBlock;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.pattern.BlockMatcher;
 import net.minecraft.command.Commands;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.placement.ConfiguredPlacement;
+import net.minecraft.world.gen.placement.CountRangeConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 //IMC multiple IPC combine to list received values of sent evaluations of closure results
+import java.rmi.registry.RegistryHandler;
 import java.util.stream.Collectors;
 
 //command arguments
@@ -72,7 +77,7 @@ public class Jacko
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("jacko", "helloworld",
+        InterModComms.sendTo("jacko", "hello_world",
                 () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
         //binding element manufacture to supply
     }
@@ -105,6 +110,42 @@ public class Jacko
                             return 1;
                         })
         );
+    }
+
+    public static OreFeatureConfig.FillerBlockType END_STONE = OreFeatureConfig.FillerBlockType.create("END_STONE",
+            "end_stone", new BlockMatcher(Blocks.END_STONE));
+
+    @SubscribeEvent
+    public static void generateOres(FMLLoadCompleteEvent event) {
+        BlockState defUnlock = unlock.getDefaultState();
+        for (Biome biome : ForgeRegistries.BIOMES) {
+
+            //Nether Generation
+            if (biome.getCategory() == Biome.Category.NETHER) {
+                genOre(biome, 12, 5, 5, 80,
+                        OreFeatureConfig.FillerBlockType.NETHERRACK,
+                        defUnlock, 4);
+            //End Generation
+            } else if (biome.getCategory() == Biome.Category.THEEND) {
+                genOre(biome, 18, 3, 5, 80,
+                        END_STONE,
+                        defUnlock, 12);
+            //World Generation
+            } else {
+                genOre(biome, 15, 8, 5, 50,
+                        OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+                        defUnlock, 6);
+            }
+        }
+    }
+
+    private static void genOre(Biome biome, int count, int bottomOffset, int topOffset, int max,
+                               OreFeatureConfig.FillerBlockType filler, BlockState defaultBlockstate, int size) {
+        CountRangeConfig range = new CountRangeConfig(count, bottomOffset, topOffset, max);
+        OreFeatureConfig feature = new OreFeatureConfig(filler, defaultBlockstate, size);
+        ConfiguredPlacement config = Placement.COUNT_RANGE.configure(range);
+        biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.
+                withConfiguration(feature).withPlacement(config));
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
