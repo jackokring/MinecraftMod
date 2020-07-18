@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "ux",
+    "xu",
     "xx"
   ],
   "key":
@@ -18,7 +18,7 @@
   },
   "result":
   {
-    "item": "jacko:unlock",
-    "count": 4
+    "item": "jacko:book",
+    "count": 1
   }
 }

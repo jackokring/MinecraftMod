@@ -3,7 +3,8 @@
   "requirements": [
     [
       [ "has_item_unlock" ],
-      [ "has_the_recipe_unlock" ]
+      [ "has_the_recipe_unlock" ],
+      [ "has_the_recipe_book" ]
     ]
   ],
   "criteria": {
@@ -22,11 +23,18 @@
       "conditions": {
         "recipe": "jacko:unlock_for_emerald"
       }
+    },
+    "has_the_recipe_book": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jacko:book_for_emerald"
+      }
     }
   },
   "rewards": {
     "recipes": [
-      "jacko:unlock_for_emerald"
+      "jacko:unlock_for_emerald",
+      "jacko:book_for_emerald"
     ]
   }
 }
