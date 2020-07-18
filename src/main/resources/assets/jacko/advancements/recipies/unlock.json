@@ -3,18 +3,23 @@
   "requirements": [
     [
       [ "has_item_unlock" ],
+
       [ "has_the_recipe_unlock" ],
       [ "has_the_recipe_redstone" ],
       [ "has_the_recipe_book" ],
       [ "has_the_recipe_pickaxe" ],
+
       [ "has_the_recipe_glowstone" ],
       [ "has_the_recipe_iron" ],
       [ "has_the_recipe_quartz" ],
       [ "has_the_recipe_gold" ],
+
       [ "has_the_recipe_sigma" ],
       [ "has_the_recipe_delta" ],
       [ "has_the_recipe_upsilon" ],
-      [ "has_the_recipe_pi" ]
+      [ "has_the_recipe_pi" ],
+
+      [ "has_the_recipe_obsidian" ]
     ]
   ],
   "criteria": {
@@ -33,6 +38,7 @@
         ]
       }
     },
+
     "has_the_recipe_unlock": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -57,6 +63,7 @@
         "recipe": "jacko:pickaxe_for_emerald"
       }
     },
+
     "has_the_recipe_glowstone": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -81,6 +88,7 @@
         "recipe": "jacko:gold_for_emerald"
       }
     },
+
     "has_the_recipe_sigma": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -104,6 +112,13 @@
       "conditions": {
         "recipe": "jacko:pi_for_emerald"
       }
+    },
+
+    "has_the_recipe_obsidian": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jacko:obsidian_for_emerald"
+      }
     }
   },
   "rewards": {
@@ -112,14 +127,18 @@
       "jacko:redstone_for_emerald",
       "jacko:book_for_emerald",
       "jacko:pickaxe_for_emerald",
+
       "jacko:glowstone_for_emerald",
       "jacko:iron_for_emerald",
       "jacko:quartz_for_emerald",
       "jacko:gold_for_emerald",
+
       "jacko:sigma_for_emerald",
       "jacko:delta_for_emerald",
       "jacko:upsilon_for_emerald",
-      "jacko:pi_for_emerald"
+      "jacko:pi_for_emerald",
+
+      "jacko:obsidian_for_emerald"
     ]
   }
 }

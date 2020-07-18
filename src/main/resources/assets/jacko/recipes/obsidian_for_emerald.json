@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "ux",
+    "ux"
+  ],
+  "key":
+  {
+    "u":
+    {
+      "item": "jacko:unlock"
+    },
+    "x":
+    {
+      "item": "minecraft:emerald"
+    }
+  },
+  "result":
+  {
+    "item": "minecraft:obsidian",
+    "count": 16
+  }
+}
