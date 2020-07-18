@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xx",
+    "xu"
+  ],
+  "key":
+  {
+    "u":
+    {
+      "item": "jacko:unlock"
+    },
+    "x":
+    {
+      "item": "minecraft:emerald"
+    }
+  },
+  "result":
+  {
+    "item": "minecraft:netherite_pickaxe",
+    "count": 1
+  }
+}
