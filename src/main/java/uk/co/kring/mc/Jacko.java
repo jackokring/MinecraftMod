@@ -105,6 +105,10 @@ public class Jacko
             BlockItem unlockItem = new BlockItem(unlock, itemP);
             unlockItem.setRegistryName(unlock.getRegistryName());
             event.getRegistry().register(unlockItem);
+            itemP = new Item.Properties().group(ItemGroup.MISC);
+            Item bookItem = new Item(itemP);
+            bookItem.setRegistryName("jacko", "book");
+            event.getRegistry().register(bookItem);
         }
     }
 }

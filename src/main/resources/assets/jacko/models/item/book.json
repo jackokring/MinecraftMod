@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:written_book",
+  "tags": {
+      "pages": [
+          { "text": "<insert text here>" },
+          { "text": "<insert text here>" }
+      ],
+      "title": "Libra Codex",
+      "author": "Jacko",
+      "generation": 0,
+      "resolved": 1
+  }
+}
