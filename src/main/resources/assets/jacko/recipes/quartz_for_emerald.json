@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "xu",
-    "xx"
+    "uu",
+    "xu"
   ],
   "key":
   {
@@ -18,7 +18,7 @@
   },
   "result":
   {
-    "item": "minecraft:redstone",
-    "count": 44
+    "item": "minecraft:quartz",
+    "count": 14
   }
 }

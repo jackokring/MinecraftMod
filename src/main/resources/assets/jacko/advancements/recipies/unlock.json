@@ -4,9 +4,13 @@
     [
       [ "has_item_unlock" ],
       [ "has_the_recipe_unlock" ],
-      [ "has_the_recipe_book" ],
       [ "has_the_recipe_redstone" ],
+      [ "has_the_recipe_book" ],
       [ "has_the_recipe_pickaxe" ]
+      [ "has_the_recipe_glowstone" ],
+      [ "has_the_recipe_iron" ],
+      [ "has_the_recipe_quartz" ],
+      [ "has_the_recipe_gold" ]
     ]
   ],
   "criteria": {
@@ -48,6 +52,30 @@
       "conditions": {
         "recipe": "jacko:pickaxe_for_emerald"
       }
+    },
+    "has_the_recipe_glowstone": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jacko:glowstone_for_emerald"
+      }
+    },
+    "has_the_recipe_iron": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jacko:iron_for_emerald"
+      }
+    },
+    "has_the_recipe_quartz": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jacko:quartz_for_emerald"
+      }
+    },
+    "has_the_recipe_gold": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jacko:gold_for_emerald"
+      }
     }
   },
   "rewards": {
@@ -55,7 +83,11 @@
       "jacko:unlock_for_emerald",
       "jacko:redstone_for_emerald",
       "jacko:book_for_emerald",
-      "jacko:pickaxe_for_emerald"
+      "jacko:pickaxe_for_emerald",
+      "jacko:glowstone_for_emerald",
+      "jacko:iron_for_emerald",
+      "jacko:quartz_for_emerald",
+      "jacko:gold_for_emerald"
     ]
   }
 }

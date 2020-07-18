@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "xu",
-    "xx"
+    "uu",
+    "ux"
   ],
   "key":
   {
@@ -18,7 +18,7 @@
   },
   "result":
   {
-    "item": "minecraft:redstone",
-    "count": 44
+    "item": "jacko:gold_nugget",
+    "count": 79
   }
 }
