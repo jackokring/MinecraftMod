@@ -19,7 +19,8 @@
       [ "has_the_recipe_upsilon" ],
       [ "has_the_recipe_pi" ],
 
-      [ "has_the_recipe_obsidian" ]
+      [ "has_the_recipe_obsidian" ],
+      [ "has_the_recipe_lime" ]
     ]
   ],
   "criteria": {
@@ -119,6 +120,12 @@
       "conditions": {
         "recipe": "jacko:obsidian_for_emerald"
       }
+    },
+    "has_the_recipe_lime": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jacko:lime_for_emerald"
+      }
     }
   },
   "rewards": {
@@ -138,7 +145,8 @@
       "jacko:upsilon_for_emerald",
       "jacko:pi_for_emerald",
 
-      "jacko:obsidian_for_emerald"
+      "jacko:obsidian_for_emerald",
+      "jacko:lime_for_emerald"
     ]
   }
 }
