@@ -5,6 +5,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.OreBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.command.Commands;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -23,9 +24,17 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+//IMC multiple IPC combine to list received values of sent evaluations of closure results
 import java.util.stream.Collectors;
 
-import static uk.co.kring.mc.Blocks.unlock;
+//command arguments
+import static com.mojang.brigadier.arguments.IntegerArgumentType.*;
+import static com.mojang.brigadier.arguments.StringArgumentType.*;
+import static com.mojang.brigadier.arguments.BoolArgumentType.*;
+import static com.mojang.brigadier.arguments.FloatArgumentType.*;
+
+//ObjectHolder
+import static uk.co.kring.mc.Blocks.*;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("jacko")
@@ -56,13 +65,15 @@ public class Jacko
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
-        LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
+        LOGGER.info("Got game settings {}",
+                event.getMinecraftSupplier().get().gameSettings);
         //IMC supplier and field
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("jacko", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+        InterModComms.sendTo("jacko", "helloworld",
+                () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
         //binding element manufacture to supply
     }
 
@@ -79,6 +90,21 @@ public class Jacko
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
         LOGGER.info("HELLO from server starting");
+        event.getCommandDispatcher().register(
+                Commands.literal("foo")
+                        .requires(source -> source.hasPermissionLevel(4))
+                        .then(
+                                Commands.argument("bar", integer())
+                                        .executes(context -> {
+                                            System.out.println("Bar is " + getInteger(context, "bar"));
+                                            return 1;
+                                        })
+                        )
+                        .executes(context -> {
+                            System.out.println("Called foo with no arguments");
+                            return 1;
+                        })
+        );
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
