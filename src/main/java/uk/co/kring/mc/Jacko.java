@@ -117,32 +117,31 @@ public class Jacko
 
     @SubscribeEvent
     public static void generateOres(FMLLoadCompleteEvent event) {
-        BlockState defUnlock = unlock.getDefaultState();
         for (Biome biome : ForgeRegistries.BIOMES) {
 
             //Nether Generation
             if (biome.getCategory() == Biome.Category.NETHER) {
                 genOre(biome, 12, 5, 5, 80,
                         OreFeatureConfig.FillerBlockType.NETHERRACK,
-                        defUnlock, 4);
+                        unlock, 4);
             //End Generation
             } else if (biome.getCategory() == Biome.Category.THEEND) {
                 genOre(biome, 18, 3, 5, 80,
                         END_STONE,
-                        defUnlock, 12);
+                        unlock, 12);
             //World Generation
             } else {
                 genOre(biome, 15, 8, 5, 50,
                         OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                        defUnlock, 6);
+                        unlock, 6);
             }
         }
     }
 
     private static void genOre(Biome biome, int count, int bottomOffset, int topOffset, int max,
-                               OreFeatureConfig.FillerBlockType filler, BlockState defaultBlockstate, int size) {
+                               OreFeatureConfig.FillerBlockType filler, Block block, int size) {
         CountRangeConfig range = new CountRangeConfig(count, bottomOffset, topOffset, max);
-        OreFeatureConfig feature = new OreFeatureConfig(filler, defaultBlockstate, size);
+        OreFeatureConfig feature = new OreFeatureConfig(filler, block.getDefaultState(), size);
         ConfiguredPlacement config = Placement.COUNT_RANGE.configure(range);
         biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.
                 withConfiguration(feature).withPlacement(config));
