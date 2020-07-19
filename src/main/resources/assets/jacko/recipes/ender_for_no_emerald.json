@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "uu",
+    "uu"
+  ],
+  "key":
+  {
+    "u":
+    {
+      "item": "jacko:unlock"
+    }
+  },
+  "result":
+  {
+    "item": "minecraft:ender_eye",
+    "count": 1
+  }
+}
