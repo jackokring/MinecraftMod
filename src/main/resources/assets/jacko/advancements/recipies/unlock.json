@@ -19,9 +19,9 @@
       [ "has_the_recipe_upsilon" ],
       [ "has_the_recipe_pi" ],
 
-      [ "has_the_recipe_ender" ]
+      [ "has_the_recipe_ender" ],
       [ "has_the_recipe_obsidian" ],
-
+      [ "has_the_recipe_fall" ],
       [ "has_the_recipe_lime" ]
     ]
   ],
@@ -129,7 +129,12 @@
         "recipe": "jacko:obsidian_for_emerald"
       }
     },
-
+    "has_the_recipe_fall": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jacko:fall_for_emerald"
+      }
+    },
     "has_the_recipe_lime": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -156,7 +161,7 @@
 
       "jacko:ender_for_no_emerald",
       "jacko:obsidian_for_emerald",
-
+      "jacko:fall_for_emerald",
       "jacko:lime_for_emerald"
     ]
   }
