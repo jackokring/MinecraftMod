@@ -19,10 +19,10 @@
       [ "has_the_recipe_upsilon" ],
       [ "has_the_recipe_pi" ],
 
-      [ "has_the_recipe_obsidian" ],
-      [ "has_the_recipe_lime" ],
-
       [ "has_the_recipe_ender" ]
+      [ "has_the_recipe_obsidian" ],
+
+      [ "has_the_recipe_lime" ]
     ]
   ],
   "criteria": {
@@ -117,23 +117,23 @@
       }
     },
 
+    "has_the_recipe_ender": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jacko:ender_for_no_emerald"
+      }
+    },
     "has_the_recipe_obsidian": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "jacko:obsidian_for_emerald"
       }
     },
+
     "has_the_recipe_lime": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "jacko:lime_for_emerald"
-      }
-    },
-
-    "has_the_recipe_ender": {
-      "trigger": "minecraft:recipe_unlocked",
-      "conditions": {
-        "recipe": "jacko:ender_for_no_emerald"
       }
     }
   },
@@ -154,10 +154,10 @@
       "jacko:upsilon_for_emerald",
       "jacko:pi_for_emerald",
 
+      "jacko:ender_for_no_emerald",
       "jacko:obsidian_for_emerald",
-      "jacko:lime_for_emerald",
 
-      "jacko:ender_for_no_emerald"
+      "jacko:lime_for_emerald"
     ]
   }
 }
