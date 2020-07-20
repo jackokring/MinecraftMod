@@ -3,7 +3,7 @@
   "pattern":
   [
     "xu",
-    "uu"
+    "xx"
   ],
   "key":
   {
@@ -19,6 +19,6 @@
   "result":
   {
     "item": "minecraft:glowstone_dust",
-    "count": 15
+    "count": 29
   }
 }

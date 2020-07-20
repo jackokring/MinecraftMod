@@ -3,7 +3,7 @@
   "pattern":
   [
     "xu",
-    "xx"
+    "uu"
   ],
   "key":
   {
@@ -19,6 +19,6 @@
   "result":
   {
     "item": "minecraft:redstone",
-    "count": 29
+    "count": 15
   }
 }

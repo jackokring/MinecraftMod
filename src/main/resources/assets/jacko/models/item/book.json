@@ -15,14 +15,14 @@
               { "text": "\n\nFrom beyond all the UNLOCKA rock. Find what you seek in alchemy.\nTime freed, space changed, new atoms, new build programs opened for a new world." }
           ],
           { "text": "The first step is easing the more. Mining is just a bootstrap. Behold the magic of UNLOCKA, more UNLOCKA." },
-          { "text": "The second step is easing the other. The advancement of REDSTONE is the time not spent procuring resources." },
+          { "text": "The second step is easing the other. The advancement of GLOWSTONE is the time not spent procuring resources." },
           { "text": "The third step is knowledge in application. From the pages of a CODEX this springs. Thank you for choosing wisely." },
           { "text": "The fourth step is in solving as much as possible for all that remains. Bring fourth the tool to apply." },
           [
               { "text": "The Four Pillars of Fixed Asset.", "bold": true },
               { "text": "\n\nSome things are hard to obtain. In easing the other some decisions were made.\nLight, heavy, transparent and rare." }
           ],
-          { "text": "The GLOWSTONE of inner fire. Made easy by new crafting technology. A useful inner fire.\nPhlogiston and an illumination. A story fit for a mind of light." },
+          { "text": "The REDSTONE of inner fire. Made easy by new crafting technology. A useful inner fire.\nPhlogiston and an illumination. A story fit for a mind of light." },
           { "text": "The IRON of the core. An abundant hard material. Use the ease of the advancement.\nNucleosynthesis of an important star. A story of the end of energy second to none." },
           { "text": "The QUARTZ of the clock tones. An interesting material. It vibrates quite a bit.\nIntrinsic window panes. Reduced and purified a story of the semiconductor." },
           { "text": "The GOLD of the acid test. Rare but useful.\nImpermanence of the analog. It's special ability sought by alchemist since time long gone." },
@@ -44,12 +44,36 @@
           ],
           [
               { "text": "The Four Pillars of Retral Craft.", "bold": true },
-              { "text": "\n\nOf all that remains the magic of UNLOCKA provides for you. Decisions, decisions. Why wait when you can try?" }
+              { "text": "\n\nOf all that remains, the magic of UNLOCKA provides for you. Decisions, decisions. Why wait when you can try?" }
           ],
           { "text": "Transport can be slow. UNLOCKA provides.\nNot be it for me to use time in admiration of another tree, or another cycle of life all while not engaging.\nBehold the ENDER EYE." },
           { "text": "Buildings can be fickle. UNLOCKA provides.\nDon't panic! You're covered with OBSIDIAN. Tough as nails, and with other value in crafting. A natural solution to some of your little problems." },
           { "text": "Oops. EMERALD provides.\nSuch a simple thing as gravity. All that armour for constructing things way up high. Seems like falling is enough of a respawn." },
-          { "text": "Laying the foundations means choice. UNLOCKA provides.\nA construction material? Why not go for a muck and quick water finish? After all the air contains part of the lime. A nice handy compromise." }
+          { "text": "Laying the foundations means choice. UNLOCKA provides.\nA construction material? Why not go for a muck and quick water finish? After all the air contains part of the lime. A nice handy compromise." },
+          [
+              { "text": "The Four Units of Measure.", "bold": true },
+              { "text": "\n\nSome things are harder. Else by providing the primaries classed and ready to be made.\nThe reformation operators from mind to craft.\nSIGMA, DELTA, UPSILON and PI." }
+          ],
+          [
+              { "text": "Velocity.", "color": "red" },
+              { "text": "\n\n.Conservation of Momentum. Another expression of conservation of FIRE.\n\nEverybody knows things stop on their own." }
+          ],
+          [
+              { "text": "Mass", "color": "gold" },
+              { "text": "\n\n.Conservation of Inertia. Another expression of conservation of EARTH.\n\nEverybody knows the inventory size has no such effect." }
+          ],
+          [
+              { "text": "Chaos Conduction.", "color": "blue" },
+              { "text": "\n\n.Conservation of Entanglement. Another expression of conservation of WATER.\n\nEverybody knows things are where the are and remain there." }
+          ],
+          [
+              { "text": "Frequency.", "color": "dark_green" },
+              { "text": "\n\n.Conservation of Energy. Another expression of conservation of AIR.\n\nEverybody knows REDSTONE energy reduces with distance." }
+          ],
+          [
+              { "text": "Some Say Noether.", "bold": true },
+              { "text": "\n\nThe mistress of scientific magic did make up such fanciful ideas wrong in this world.\n\nShe was punished by the witches we know exist." }
+          ]
       ],
       "title": "Libra Codex",
       "author": "Jacko",
