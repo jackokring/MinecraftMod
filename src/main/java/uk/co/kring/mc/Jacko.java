@@ -175,6 +175,10 @@ public class Jacko
             Item bookItem = new Item(itemP);
             bookItem.setRegistryName("jacko", "book");
             event.getRegistry().register(bookItem);
+            itemP = new Item.Properties().group(ItemGroup.BREWING);
+            Item potion = new Item(itemP);
+            potion.setRegistryName("jacko", "zerog");
+            event.getRegistry().register(potion);
         }
     }
 }
