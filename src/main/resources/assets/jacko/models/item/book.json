@@ -2,40 +2,54 @@
   "parent": "minecraft:written_book",
   "tags": {
       "pages": [
-          { "text": "A Story for Life.\nThe beginning is not the end. All is not known. Few things are free. Drudgery is for fools with no aspiration. Work is done independent of what's on the to do list of happenstance." },
-
-          { "text": "In the beginning was FIRE. The kinetic origin, the verb's action and the passage of time. Without time there is nothing observed and no purpose. Without time there is no energy, no motion. Motion is the source of all change." },
+          [
+              { "text": "A Story for Life.", "bold": true },
+              { "text": "\n\nThe beginning is not the end. All is not known. Few things are free. Drudgery is for fools with no aspiration. Work is done independent of what's on the to do list of happenstance." }
+          ],
+          { "text": "In the beginning was FIRE. The kinetic origin, the verb's action and the passage of time. Without time there is nothing observed and no purpose. Without time there is no energy. Motion is the source of all change." },
           { "text": "The EARTH took shape. The action of motion upon the material. The material itself a potential energy locked in and held from use. The noun's nature. Purpose to do with things becoming possible. A progression to absolute zero kinetic." },
-          { "text": "The WATER of the babel lingo of the Turing machine came to pass. Nouns and verbs joined by adjectives and adverbs. The division of the unity of the universe into finer and finer atoms. The primary irreducible rocks of the talking mechanisms." },
-          { "text": "The AIR of programs were cast solid for clocking output to FIRE. Thought created as composed products of words. Simulations and expectations. Optimizations and efficiency. A chemistry of mind. The control of fire." },
-
-          { "text": "The Four Pillars of Mutable Advancement.\nFrom beyond all the UNLOCKA rock. Find what you seek in alchemy.\nTime freed, space changed, new atoms, new build programs opened for a new world." },
-
+          { "text": "The WATER of the babel of the Turing machine is now. Nouns and verbs joined by adjectives and adverbs. The division of the unity of the universe into finer and finer atoms. The primary irreducible rocks of the quantized mechanisms." },
+          { "text": "The AIR of code cast solid for clocking output to FIRE. Thought created by composed product of words. Simulation and expectation. Optimization and efficiency. The control of fire." },
+          [
+              { "text": "The Four Pillars of Mutable Advancement.", "bold": true },
+              { "text": "\n\nFrom beyond all the UNLOCKA rock. Find what you seek in alchemy.\nTime freed, space changed, new atoms, new build programs opened for a new world." }
+          ],
           { "text": "The first step is easing the more. Mining is just a bootstrap. Behold the magic of UNLOCKA, more UNLOCKA." },
           { "text": "The second step is easing the other. The advancement of REDSTONE is the time not spent procuring resources." },
           { "text": "The third step is knowledge in application. From the pages of a CODEX this springs. Thank you for choosing wisely." },
           { "text": "The fourth step is in solving as much as possible for all that remains. Bring fourth the tool to apply." },
-
-          { "text": "The Four Pillars of Fixed Asset.\nSome things are hard to obtain. In easing the other some decisions were made.\nLight, heavy, transparent and rare." },
-
+          [
+              { "text": "The Four Pillars of Fixed Asset.", "bold": true },
+              { "text": "\n\nSome things are hard to obtain. In easing the other some decisions were made.\nLight, heavy, transparent and rare." }
+          ],
           { "text": "The GLOWSTONE of inner fire. Made easy by new crafting technology. A useful inner fire.\nPhlogiston and an illumination. A story fit for a mind of light." },
           { "text": "The IRON of the core. An abundant hard material. Use the ease of the advancement.\nNucleosynthesis of an important star. A story of the end of energy second to none." },
           { "text": "The QUARTZ of the clock tones. An interesting material. It vibrates quite a bit.\nIntrinsic window panes. Reduced and purified a story of the semiconductor." },
           { "text": "The GOLD of the acid test. Rare but useful.\nImpermanence of the analog. It's special ability sought by alchemist since time long gone." },
-
-          { "text": "The Four Pillars of Cardinal Logic.\nSome things are hard to understand. In providing the knowledge the primaries were defined and classed ready to be instanced.\nThe transformation operators descend from mind to craft.\nSIGMA, DELTA, UPSILON and PI." },
-
-          { "text": "Σ (SIGMA) the sum of all things." },
-          { "text": "Δ (DELTA) the differences from expectations." },
-          { "text": "V (UPSILON) the fractions and our groups." },
-          { "text": "Π (PI) the productive gains." },
-
-          { "text": "The Four Pillars of Retral Remnant.\nOf all that remains the magic of UNLOCKA provides for you. Decisions, decisions. Why wait when you can try?" },
-
+          [
+              { "text": "The Four Pillars of Cardinal Logic.", "bold": true },
+              { "text": "\n\nSome things are harder. In providing the knowledge primaries were classical ready to be made.\nThe reformation operators from mind to craft.\nSIGMA, DELTA, UPSILON and PI." }
+          ],
+          [
+              { "text": "Σ (SIGMA) the sum of all things.", "color": "red" }
+          ],
+          [
+              { "text": "Δ (DELTA) the differences from expectations.", "color": "gold" }
+          ],
+          [
+              { "text": "V (UPSILON) the fractions and our groups.", "color": "blue" }
+          ],
+          [
+              { "text": "Π (PI) the productive gains.", "color": "green" }
+          ],
+          [
+              { "text": "The Four Pillars of Retral Remnant.", "bold": true },
+              { "text": "\n\nOf all that remains the magic of UNLOCKA provides for you. Decisions, decisions. Why wait when you can try?" }
+          ],
           { "text": "Transport can be slow. UNLOCKA provides.\nNot be it for me to use time in admiration of another tree, or another cycle of life all while not engaging.\nBehold the ENDER EYE." },
           { "text": "Buildings can be fickle. UNLOCKA provides.\nDon't panic! You're covered with OBSIDIAN. Tough as nails, and with other value in crafting. A natural solution to some of your little problems." },
           { "text": "Oops. EMERALD provides.\nSuch a simple thing as gravity. All that armour for constructing things way up high. Seems like falling is enough of a respawn." },
-          { "text": "Laying the foundations means choice. UNLOCKA provides.\nA modern general construction material? Why not go for a nice muck and quick water finish? After all the air contains part of the lime quickened by fire. A nice handy compromise." }
+          { "text": "Laying the foundations means choice. UNLOCKA provides.\nA construction material? Why not go for a muck and quick water finish? After all the air contains part of the lime. A nice handy compromise." }
       ],
       "title": "Libra Codex",
       "author": "Jacko",
