@@ -112,39 +112,76 @@ public class Jacko
         );
     }
 
-    public static OreFeatureConfig.FillerBlockType END_STONE = OreFeatureConfig.FillerBlockType.create("END_STONE",
-            "end_stone", new BlockMatcher(Blocks.END_STONE));
+    public static class RangedRocker {
+        public int count, bottomOffset, topOffset, max;
+        public RangedRocker(int countSet, int bottomOffsetSet, int topOffsetSet, int maxSet) {
+            count = countSet;
+            bottomOffset = bottomOffsetSet;
+            topOffset = topOffsetSet;
+            max = maxSet;
+        }
+    }
+
+    //count = iterative attempts to match random location with that to be replaced for spawn (commonality)
+    //bottomOffset/topOffset = bottom and top offsets. 0 - 255 range squish
+    //max = maximum cascade iterates
+    public static RangedRocker[] ranges = {
+        new RangedRocker(12, 5, 5, 80),
+        new RangedRocker(18, 3, 5, 80),
+        new RangedRocker(15, 8, 5, 50)
+    };
+
+    public static class BiomeRocker {
+        Biome biome;
+        OreFeatureConfig.FillerBlockType find;
+        Block replace;
+        RangedRocker range;
+        Biome.Category subFilter;
+        int size;
+
+        public BiomeRocker(OreFeatureConfig.FillerBlockType findSet, Block replaceSet, RangedRocker rangeSet, int sizeSet,
+                           Biome.Category subFilterSet, Biome biomeSet) {
+            biome = biomeSet;
+            find = findSet;
+            replace = replaceSet;
+            range = rangeSet;
+            subFilter = subFilterSet;
+            size = sizeSet;
+        }
+    }
+
+    //Seems to be no End Stone Ore type
+    public static OreFeatureConfig.FillerBlockType END_STONE =
+            OreFeatureConfig.FillerBlockType.create("END_STONE","end_stone",
+                    new BlockMatcher(Blocks.END_STONE));
+
+    //filters to iterate
+    //more generic later as only one is applied per biome
+    public static BiomeRocker[] biomes = {
+        new BiomeRocker(OreFeatureConfig.FillerBlockType.NETHERRACK, unlock, ranges[0], 4,
+                Biome.Category.NETHER, null),
+        new BiomeRocker(END_STONE, unlock, ranges[1], 12, Biome.Category.THEEND, null),
+        new BiomeRocker(OreFeatureConfig.FillerBlockType.NATURAL_STONE, unlock, ranges[2], 6,
+                null, null)
+    };
 
     @SubscribeEvent
     public static void generateOres(FMLLoadCompleteEvent event) {
         for (Biome biome : ForgeRegistries.BIOMES) {
-
-            //Nether Generation
-            if (biome.getCategory() == Biome.Category.NETHER) {
-                genOre(biome, 12, 5, 5, 80,
-                        OreFeatureConfig.FillerBlockType.NETHERRACK,
-                        unlock, 4);
-            //End Generation
-            } else if (biome.getCategory() == Biome.Category.THEEND) {
-                genOre(biome, 18, 3, 5, 80,
-                        END_STONE,
-                        unlock, 12);
-            //World Generation
-            } else {
-                genOre(biome, 15, 8, 5, 50,
-                        OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                        unlock, 6);
+            for(BiomeRocker br : biomes) {
+                if(br.biome == null || biome == br.biome) {
+                    if(br.subFilter == null || biome.getCategory() == br.subFilter) {
+                        RangedRocker rr = br.range;
+                        CountRangeConfig range = new CountRangeConfig(rr.count, rr.bottomOffset, rr.topOffset, rr.max);
+                        OreFeatureConfig feature = new OreFeatureConfig(br.find, br.replace.getDefaultState(), br.size);
+                        ConfiguredPlacement config = Placement.COUNT_RANGE.configure(range);
+                        biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.
+                                withConfiguration(feature).withPlacement(config));
+                        break;//exit one applied per biome
+                    }
+                }
             }
         }
-    }
-
-    private static void genOre(Biome biome, int count, int bottomOffset, int topOffset, int max,
-                               OreFeatureConfig.FillerBlockType filler, Block block, int size) {
-        CountRangeConfig range = new CountRangeConfig(count, bottomOffset, topOffset, max);
-        OreFeatureConfig feature = new OreFeatureConfig(filler, block.getDefaultState(), size);
-        ConfiguredPlacement config = Placement.COUNT_RANGE.configure(range);
-        biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.
-                withConfiguration(feature).withPlacement(config));
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
