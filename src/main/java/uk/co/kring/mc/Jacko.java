@@ -138,8 +138,10 @@ public class Jacko
         RangedRocker range;
         Biome.Category subFilter;
         int size;
+        boolean terminal;
 
-        public BiomeRocker(OreFeatureConfig.FillerBlockType findSet, Block replaceSet, RangedRocker rangeSet, int sizeSet,
+        public BiomeRocker(OreFeatureConfig.FillerBlockType findSet, Block replaceSet, RangedRocker rangeSet,
+                           int sizeSet, boolean terminalSet,
                            Biome.Category subFilterSet, Biome biomeSet) {
             biome = biomeSet;
             find = findSet;
@@ -147,6 +149,7 @@ public class Jacko
             range = rangeSet;
             subFilter = subFilterSet;
             size = sizeSet;
+            terminal = terminalSet;
         }
     }
 
@@ -156,12 +159,14 @@ public class Jacko
                     new BlockMatcher(Blocks.END_STONE));
 
     //filters to iterate
-    //more generic later as only one is applied per biome
+    //more generic later as only applied per biome until terminalSet = true
+    //sizeSet is vein size
     public static BiomeRocker[] biomes = {
-        new BiomeRocker(OreFeatureConfig.FillerBlockType.NETHERRACK, unlock, ranges[0], 4,
+        new BiomeRocker(OreFeatureConfig.FillerBlockType.NETHERRACK, unlock, ranges[0], 4, true,
                 Biome.Category.NETHER, null),
-        new BiomeRocker(END_STONE, unlock, ranges[1], 12, Biome.Category.THEEND, null),
-        new BiomeRocker(OreFeatureConfig.FillerBlockType.NATURAL_STONE, unlock, ranges[2], 6,
+        new BiomeRocker(END_STONE, unlock, ranges[1], 12, true,
+                Biome.Category.THEEND, null),
+        new BiomeRocker(OreFeatureConfig.FillerBlockType.NATURAL_STONE, unlock, ranges[2], 6, true,
                 null, null)
     };
 
@@ -177,7 +182,7 @@ public class Jacko
                         ConfiguredPlacement config = Placement.COUNT_RANGE.configure(range);
                         biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.
                                 withConfiguration(feature).withPlacement(config));
-                        break;//exit one applied per biome
+                        if(br.terminal) break;//exit all applied per biome
                     }
                 }
             }
