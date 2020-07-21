@@ -13,7 +13,7 @@ Delta Block
 
 A simple calculus block. I say simple but actually quite complex in implementation, but simpler to use.
 The output is the following including a range scaling:
-    out = k.(d[A - IN] * [B - IN])/dt + IN
+    OUT = k.(d[A - IN] * [B - IN])/dt + IN
 The second mode is an integration like operation also based about IN, and the multiply before application.
 An endpoint integral with the time set to an appropriate constant. Both these operators contain memory and have
 complex behaviour. The also should both produce a static out value of IN when A and B do not change.
@@ -26,4 +26,6 @@ Upsilon Block
 Pi Block
 --------
 
-<<still thinking>>
+Equality synchronous RAM. If A = B, location IN gets written with AB, and/or else read location IN to OUT. This makes
+for easy read write control by interception of either A or B. It provides a massive 16 nibbles of memory and decode.
+When set in the torch on mode,

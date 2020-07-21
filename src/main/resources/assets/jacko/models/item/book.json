@@ -51,7 +51,7 @@
           [
               { "text": "Π [PI] the productive gains.", "color": "dark_green" },
               { "text": "\n\nLike a comparator with a green tint. With strong REDSTONE close to being:" },
-              { "text": "\n\n Torch Off:\n  [A and B] or IN.\n Torch On:\n  not[A and B] and IN.", "bold":  true }
+              { "text": "\n\n Torch Off:\n  inconsistent.\n Torch On:\n  not[A and B] and IN.", "bold":  true }
           ],
 
           [
