@@ -28,6 +28,8 @@ Pi Block
 
 Equality synchronous RAM. If A = B, location IN gets written with AB, and/or else read location IN to OUT. This makes
 for easy read write control by interception of either A or B. It provides a massive 16 nibbles of memory and decode.
-When set in the torch on mode, a nice equality inverter is made. This gives a full:
+With care some of the RAM is FLASH. Disconnection makes A = B = 0, and can zero the addressed location.
+So as torch on mode it allow torch off, collect and name in an anvil?
+When set in the torch off mode, a nice equality inverter is made. This gives a full:
     OUT = (15 - IN) * (A = B) + IN * (A != B)
 Long chains just alternate and alternate drive so don't lose signal.
