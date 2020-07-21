@@ -1,0 +1,23 @@
+Sigma Block
+-----------
+
+A multiply and accumulate using sides A and B multiplied (and optionally scaled by division by 16) and the IN added.
+The result is the output modulo 16. No consideration for carries between Sigma blocks is allowed in this design.
+The scaling is to simulate very low precision fixed point functionality. A modulo 16 additive inverse may be
+subtracted hence keeping the carries out of it as external redstone signals. This also might prepare the user for
+some technology production in the real world where carries lead to bottlenecks in OoO execution of machine instructions.
+It also has some useful logic limit (0 or 15) forms which can be dropped by the additive inverse method.
+
+Delta Block
+-----------
+
+
+
+Upsilon Block
+-------------
+
+
+
+Pi Block
+--------
+
