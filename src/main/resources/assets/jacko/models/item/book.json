@@ -41,7 +41,7 @@
           [
               { "text": "Δ [DELTA] the differences from expectations.", "color": "gold" },
               { "text": "\n\nLike a comparator with a golden tint. With strong REDSTONE close to being:" },
-              { "text": "\n\n Torch Off:\n  [A and B] or IN.\n Torch On:\n  not[A and B] and IN.", "bold":  true }
+              { "text": "\n\n Torch Off:\n  IN. [A? B?]\n Torch On:\n  IN. [A? B?]", "bold":  true }
           ],
           [
               { "text": "V [UPSILON] the fractions and our groups.", "color": "blue" },
