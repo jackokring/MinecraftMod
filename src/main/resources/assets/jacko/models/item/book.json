@@ -10,6 +10,7 @@
           { "text": "The EARTH took shape. The action of motion upon the material. The material itself a potential energy locked in and held from use. The noun's nature. Purpose to do with things becoming possible. A progression to absolute zero kinetic." },
           { "text": "The WATER of the babel of the Turing machine is now. Nouns and verbs joined by adjectives and adverbs. The division of the unity of the universe into finer and finer atoms. The primary irreducible rocks of the quantized mechanisms." },
           { "text": "The AIR of code cast solid for clocking output to FIRE. Thought created by composed product of words. Simulation and expectation. Optimization and efficiency. The control of fire." },
+
           [
               { "text": "The Four Pillars of Mutable Advancement.", "bold": true },
               { "text": "\n\nFrom beyond all the UNLOCKA rock. Find what you seek in alchemy.\nTime freed, space changed, new atoms, new build programs opened for a new world." }
@@ -18,6 +19,7 @@
           { "text": "The second step is easing the other. The advancement of GLOWSTONE is the time not spent procuring resources." },
           { "text": "The third step is knowledge in application. From the pages of a CODEX this springs. Thank you for choosing wisely." },
           { "text": "The fourth step is in solving as much as possible for all that remains. Bring fourth the tool to apply." },
+
           [
               { "text": "The Four Pillars of Fixed Asset.", "bold": true },
               { "text": "\n\nSome things are hard to obtain. In easing the other some decisions were made.\nLight, heavy, transparent and rare." }
@@ -26,12 +28,13 @@
           { "text": "The IRON of the core. An abundant hard material. Use the ease of the advancement.\nNucleosynthesis of an important star. A story of the end of energy second to none." },
           { "text": "The QUARTZ of the clock tones. An interesting material. It vibrates quite a bit.\nIntrinsic window panes. Reduced and purified a story of the semiconductor." },
           { "text": "The GOLD of the acid test. Rare but useful.\nImpermanence of the analog. It's special ability sought by alchemist since time long gone." },
+
           [
               { "text": "The Four Pillars of Cardinal Art.", "bold": true },
               { "text": "\n\nSome things are harder. Else by providing the primaries classed and ready to be made.\nThe reformation operators from mind to craft.\nSIGMA, DELTA, UPSILON and PI." }
           ],
           [
-              { "text": "Σ [SIGMA[ the sum of all things.", "color": "red" },
+              { "text": "Σ [SIGMA] the sum of all things.", "color": "red" },
               { "text": "\n\nLike comparator with a blue glow. With strong REDSTONE close to being:" },
               { "text": "\n\n Torch Off:\n  [A and B] or IN.\n Torch On:\n  not[A and B] and IN.", "bold":  true }
           ],
@@ -44,6 +47,7 @@
           [
               { "text": "Π [PI] the productive gains.", "color": "dark_green" }
           ],
+
           [
               { "text": "The Four Pillars of Retral Craft.", "bold": true },
               { "text": "\n\nOf all that remains, the magic of UNLOCKA provides for you. Decisions, decisions. Why wait when you can try?" }
@@ -52,29 +56,55 @@
           { "text": "Buildings can be fickle. UNLOCKA provides.\nDon't panic! You're covered with OBSIDIAN. Tough as nails, and with other value in crafting. A natural solution to some of your little problems." },
           { "text": "Oops. EMERALD provides.\nSuch a simple thing as gravity. All that armour for constructing things way up high. Seems like falling is enough of a respawn." },
           { "text": "Laying the foundations means choice. UNLOCKA provides.\nA construction material? Why not go for a muck and quick water finish? After all the air contains part of the lime. A nice handy compromise." },
+
           [
               { "text": "The Four Units of Measure.", "bold": true },
               { "text": "\n\nSome say there's a land beyond the End. A land past some place known as Vee-aaR. A place where no magic happens and there is just unknown science." }
           ],
           [
               { "text": "Velocity.", "color": "red" },
-              { "text": "\n\n.Conservation of Momentum. Another expression of conservation of FIRE.\n\nEverybody knows things stop on their own." }
+              { "text": "\n\nConservation of Momentum. Another expression of conservation of FIRE.\n\nEverybody knows things stop on their own." }
           ],
           [
               { "text": "Mass", "color": "gold" },
-              { "text": "\n\n.Conservation of Inertia. Another expression of conservation of EARTH.\n\nEverybody knows the inventory size has no such effect." }
+              { "text": "\n\nConservation of Inertia. Another expression of conservation of EARTH.\n\nEverybody knows the inventory size has no such effect." }
           ],
           [
-              { "text": "Chaos Conduction.", "color": "blue" },
-              { "text": "\n\n.Conservation of Entanglement. Another expression of conservation of WATER.\n\nEverybody knows things are where the are and remain there." }
+              { "text": "Field.", "color": "blue" },
+              { "text": "\n\nConservation of Ratio. Another expression of conservation of WATER.\n\nEverybody knows G isn't Velocity over Mass." }
           ],
           [
               { "text": "Frequency.", "color": "dark_green" },
-              { "text": "\n\n.Conservation of Energy. Another expression of conservation of AIR.\n\nEverybody knows REDSTONE energy reduces with distance." }
+              { "text": "\n\nConservation of Energy. Another expression of conservation of AIR.\n\nEverybody knows REDSTONE energy reduces with distance." }
           ],
           [
               { "text": "Some Say Noether.", "bold": true },
               { "text": "\n\nThe mistress of scientific magic did make up such fanciful ideas wrong in this world.\n\nShe was punished by the witches we know exist." }
+          ],
+
+          [
+              { "text": "The Four Ends of Space-time.", "bold": true },
+              { "text": "\n\n." }
+          ],
+          [
+              { "text": "The Edge of Space.", "color": "red" },
+              { "text": "\n\nOnwards, faster and faster. Never aging, moving forward, never stopping.\n\nRide the dragon and breath the most fresh new." }
+          ],
+          [
+              { "text": "The Centre of Space", "color": "gold" },
+              { "text": "\n\nSlow down as the pull will give you all you need. Stay a while or three.\n\nAccumulate to stop the outflow. Be proud and happy." }
+          ],
+          [
+              { "text": "The Centre of Time.", "color": "blue" },
+              { "text": "\n\n." }
+          ],
+          [
+              { "text": "The Edge of Time.", "color": "dark_green" },
+              { "text": "\n\n." }
+          ],
+          [
+              { "text": "Not Quite the End.", "bold": true },
+              { "text": "\n\n." }
           ]
       ],
       "title": "Libra Codex",
