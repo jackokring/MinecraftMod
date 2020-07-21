@@ -38,21 +38,25 @@
               { "text": "\n\nLike a comparator with a red tint. With strong REDSTONE close to being:" },
               { "text": "\n\n Torch Off:\n  [A and B] or IN.\n Torch On:\n  not[A and B] and IN.", "bold":  true }
           ],
+          { "text": "The word is this is the doing in the digital worlds." },
           [
               { "text": "Δ [DELTA] the differences from expectations.", "color": "gold" },
               { "text": "\n\nLike a comparator with a golden tint. With strong REDSTONE close to being:" },
               { "text": "\n\n Torch Off:\n  IN. [A? B?]\n Torch On:\n  IN. [A? B?]", "bold":  true }
           ],
+          { "text": "The word is this controls the constancy of things in the digital worlds." },
           [
               { "text": "V [UPSILON] the fractions and our groups.", "color": "blue" },
               { "text": "\n\nLike a comparator with a blue tint. With strong REDSTONE close to being:" },
-              { "text": "\n\n Torch Off:\n  [A and B] or IN.\n Torch On:\n  not[A and B] and IN.", "bold":  true }
+              { "text": "\n\n Torch Off:\n  .\n Torch On:\n  .", "bold":  true }
           ],
+          { "text": "." },
           [
               { "text": "Π [PI] the productive gains.", "color": "dark_green" },
               { "text": "\n\nLike a comparator with a green tint. With strong REDSTONE close to being:" },
               { "text": "\n\n Torch Off:\n  [not[A xor B] and not[IN]] or [[A xor B] and IN].\n Torch On:\n  Inconsistent.", "bold":  true }
           ],
+          { "text": "The word is this sequences things in the digital worlds." },
 
           [
               { "text": "The Four Pillars of Retral Craft.", "bold": true },
