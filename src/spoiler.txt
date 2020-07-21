@@ -11,7 +11,12 @@ It also has some useful logic limit (0 or 15) forms which can be dropped by the 
 Delta Block
 -----------
 
-
+A simple calculus block. I say simple but actually quite complex in implementation, but simpler to use.
+The output is the following including a range scaling:
+    out = k.[d[A - IN] * [B - IN])/dt + IN
+The second mode is an integration like operation also based about IN, and the multiply before application.
+An endpoint integral with the time set to an appropriate constant. Both these operators contain memory and have
+complex behaviour. The also should both produce a static out value of IN when A and B do not change.
 
 Upsilon Block
 -------------
