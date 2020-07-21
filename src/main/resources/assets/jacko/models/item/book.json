@@ -84,7 +84,7 @@
 
           [
               { "text": "The Four Ends of Space-time.", "bold": true },
-              { "text": "\n\n." }
+              { "text": "\n\nThe world is vast. The seed was planted, the biomes grew and the challenge became made. Pick, pick away." }
           ],
           [
               { "text": "The Edge of Space.", "color": "red" },
@@ -96,15 +96,16 @@
           ],
           [
               { "text": "The Centre of Time.", "color": "blue" },
-              { "text": "\n\n." }
+              { "text": "\n\nLook back upon the sea change of time. Experience hindsight.\n\nEnter understanding. Regret impossible happenings." }
           ],
           [
               { "text": "The Edge of Time.", "color": "dark_green" },
-              { "text": "\n\n." }
+              { "text": "\n\nLook forward and see the future. For it is one of many made by options.\n\nImagine them all so you may pick." }
           ],
           [
               { "text": "Not Quite the End.", "bold": true },
-              { "text": "\n\n." }
+              { "text": "\n\nThis book is dedicated to the dedicated.\n\nThere maybe later notes." },
+              { "text": "\n\n -- Jacko", "color": "dark_aqua" }
           ]
       ],
       "title": "Libra Codex",
