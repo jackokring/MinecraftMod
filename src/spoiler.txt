@@ -13,7 +13,7 @@ Delta Block
 
 A simple calculus block. I say simple but actually quite complex in implementation, but simpler to use.
 The output is the following including a range scaling:
-    out = k.[d[A - IN] * [B - IN])/dt + IN
+    out = k.(d[A - IN] * [B - IN])/dt + IN
 The second mode is an integration like operation also based about IN, and the multiply before application.
 An endpoint integral with the time set to an appropriate constant. Both these operators contain memory and have
 complex behaviour. The also should both produce a static out value of IN when A and B do not change.
@@ -21,8 +21,9 @@ complex behaviour. The also should both produce a static out value of IN when A 
 Upsilon Block
 -------------
 
-
+<<still thinking>> division zero, singularity, factor groups, etc ...
 
 Pi Block
 --------
 
+<<still thinking>>
