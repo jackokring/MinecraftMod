@@ -26,19 +26,24 @@ five is block. On next clock data bits are valid. Torch off is data set mode. If
 both 0 being master set clock even if 7th IN has no set clock bit. 1 to 15 set appropriate bit in packet OUT on top IN.
 Different A and B in data set mode makes a slave set node which doesn't set an unset clock for ring integrity check.
 Torch on is data read mode. If data decode from IN is valid, and bit numbers A and B are both valid true, then OUT = 15,
-else 0. Using this kind of select allows for 210 up to selectors. Select divisions, wait for poll responses.
+else 0. Using this kind of select allows for 105 up to selectors. Select divisions, wait for poll responses.
 Select zero on data read is clock bit. The allows a bus free if data set mode needs a master clock set. Multi packet
 clocks are data invalidate. Data OUT is held until next valid decode or A or B change. As a convenience OUT is +7 more
 for quick inserts on 7 redstone dust between. If clock nibble > 8, then gain reduces IN for packet data.
 Data drops can side chain redstone sections. The master resets all bits in packet to zero.
 
+Quality number wang ... 105 ... 3 selections, 105 * 13 / 3 = 455 ... 455 + 105 = 561 - 1 ...
+4 selectors, 560 * 12 / 4 = 1680 ...
+
 Pi Block
 --------
 
-Equality synchronous RAM. If A = B, location IN gets written with AB, and/or else read location IN to OUT. This makes
+[[[Equality synchronous RAM. If A = B, location IN gets written with AB, and/or else read location IN to OUT. This makes
 for easy read write control by interception of either A or B. It provides a massive 16 nibbles of memory and decode.
 With care some of the RAM is FLASH. Disconnection makes A = B = 0, and can zero the addressed location.
-So as torch on mode it allow torch off, collect and name in an anvil?
+So as torch on mode it allow torch off, collect and name in an anvil?]]] TBD -- Might go with a nibble cubic bus simple
+memory and micro-controller.
+
 When set in the torch off mode, a nice equality inverter is made. This gives a full:
     OUT = (15 - IN) * (A = B) + IN * (A != B)
 Long chains just alternate and alternate drive so don't lose signal.
