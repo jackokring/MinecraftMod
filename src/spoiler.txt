@@ -27,10 +27,10 @@ both 0 being master set clock even if 7th IN has no set clock bit. 1 to 15 set a
 Different A and B in data set mode makes a slave set node which doesn't set an unset clock for ring integrity check.
 Torch on is data read mode. If data decode from IN is valid, and bit numbers A and B are both valid true, then OUT = 15,
 else 0. Using this kind of select allows for 210 up to selectors. Select divisions, wait for poll responses.
-Bit zero on data read is clock valid. The allows a bus free if data set mode needs a clock to set bit. Multi packet
+Select zero on data read is clock bit. The allows a bus free if data set mode needs a master clock set. Multi packet
 clocks are data invalidate. Data OUT is held until next valid decode or A or B change. As a convenience OUT is +7 more
 for quick inserts on 7 redstone dust between. If clock nibble > 8, then gain reduces IN for packet data.
-Data drops can side chain redstone sections.
+Data drops can side chain redstone sections. The master resets all bits in packet to zero.
 
 Pi Block
 --------
