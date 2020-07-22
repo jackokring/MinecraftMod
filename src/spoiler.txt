@@ -21,14 +21,16 @@ complex behaviour. The also should both produce a static out value of IN when A 
 Upsilon Block
 -------------
 
-A 15 bit clocked ring. 5 redstone cycles per block. High bit is active high clock in first of 5. Lower 3 bits times
-five is block. On next clock data bits are valid. Torch off is data set mode. If A = B, then bit set with option 0 being
-set clock if 6th IN has no set clock bit. 1 to 15 set appropriate bit in packet OUT from IN. Torch on is data read
-mode. If data decode from IN is valid, and bit numbers A and B are both valid true, then output 15, else 0.
-Using this kind of select allows for 210 up to selectors. A status farm mux perhaps? Select division, wait for poll.
-Bit zero on data read is clock valid. Different A and B in data set mode makes a slave set node which does not set an
-unset clock. The allows a bus free if data set mode needs a clock to set bit. Multi packet clocks are data invalidate.
-Data OUT is held until next valid decode or A or B change. As a convenience OUT is one less for quick inserts.
+A 15 bit clocked ring. 6 redstone cycles per block. High bit is active high clock in first of 6. Lower 3 bits times
+five is block. On next clock data bits are valid. Torch off is data set mode. If A = B and valid, then bit set with
+both 0 being master set clock even if 7th IN has no set clock bit. 1 to 15 set appropriate bit in packet OUT on top IN.
+Different A and B in data set mode makes a slave set node which doesn't set an unset clock for ring integrity check.
+Torch on is data read mode. If data decode from IN is valid, and bit numbers A and B are both valid true, then OUT = 15,
+else 0. Using this kind of select allows for 210 up to selectors. Select divisions, wait for poll responses.
+Bit zero on data read is clock valid. The allows a bus free if data set mode needs a clock to set bit. Multi packet
+clocks are data invalidate. Data OUT is held until next valid decode or A or B change. As a convenience OUT is +7 more
+for quick inserts on 7 redstone dust between. If clock nibble > 8, then gain reduces IN for packet data.
+Data drops can side chain redstone sections.
 
 Pi Block
 --------
