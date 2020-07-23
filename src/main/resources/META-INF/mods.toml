@@ -29,10 +29,7 @@ credits="Thanks to the Forge" #optional
 authors="Simon Jackson" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-A mod including all my favourite experiments.
-
-An Unlocka block to access recipes to make normally rare things for technology escalation.
-
+An experiment into a future world.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.examplemod]] #optional
