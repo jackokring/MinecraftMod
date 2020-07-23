@@ -38,11 +38,10 @@ Quality number wang ... 105 ... 3 selections, 105 * 13 / 3 = 455 ... 455 + 105 =
 Pi Block
 --------
 
-[[[Equality synchronous RAM. If A = B, location IN gets written with AB, and/or else read location IN to OUT. This makes
-for easy read write control by interception of either A or B. It provides a massive 16 nibbles of memory and decode.
-With care some of the RAM is FLASH. Disconnection makes A = B = 0, and can zero the addressed location.
-So as torch on mode it allow torch off, collect and name in an anvil?]]] TBD -- Might go with a nibble cubic bus simple
-memory and micro-controller.
+Synchronous oscillator when torch on. IN sets max count to reset next cycle. A and B are triggers or'ed together.
+Count continues after trigger until reset. Then trigger OR is checked to escape reset. This allows a 16 count with IN
+zero on trigger. Trigger level is greater than zero for active and zero for inactive. Trigger can be made inactive
+and count will still continue until reset is entered.
 
 When set in the torch off mode, a nice equality inverter is made. This gives a full:
     OUT = (15 - IN) * (A = B) + IN * (A != B)
