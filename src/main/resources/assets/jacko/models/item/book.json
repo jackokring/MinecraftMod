@@ -26,8 +26,8 @@
           ],
           { "text": "The REDSTONE of inner fire. Made easy by new crafting technology. A useful inner fire.\nPhlogiston and an illumination. A story fit for a mind of light." },
           { "text": "The IRON of the core. An abundant hard material. Use the ease of the advancement.\nNucleosynthesis of an important star. A story of the end of energy second to none." },
+          { "text": "The NETHERITE of existence. Nether's most useful.\nImpermanence of the analog. It's special ability sought by alchemists since time long gone." },
           { "text": "The QUARTZ of the clock tones. An interesting material. It vibrates quite a bit.\nIntrinsic window panes. Reduced and purified a story of the semiconductor." },
-          { "text": "The GOLD of the acid test. Rare but useful.\nImpermanence of the analog. It's special ability sought by alchemist since time long gone." },
 
           [
               { "text": "The Four Pillars of Cardinal Art.", "bold": true },
@@ -56,7 +56,7 @@
               { "text": "\n\nLike a comparator with a green tint. With strong REDSTONE close to being:" },
               { "text": "\n\n Torch Off:\n  [not[A xor B] and not[IN]] or [[A xor B] and IN].\n Torch On:\n  Inconsistent.", "bold":  true }
           ],
-          { "text": "The word is this sequences things in the digital worlds.\n\nEverything is counts and equalities" },
+          { "text": "The word is this sequences things in the digital worlds.\n\nEverything is counts and equalities." },
 
           [
               { "text": "The Four Pillars of Retral Craft.", "bold": true },

@@ -3,7 +3,7 @@
   "pattern":
   [
     "uu",
-    "ux"
+    "xu"
   ],
   "key":
   {
@@ -18,7 +18,7 @@
   },
   "result":
   {
-    "item": "jacko:gold_nugget",
+    "item": "jacko:netherite_ingot",
     "count": 43
   }
 }

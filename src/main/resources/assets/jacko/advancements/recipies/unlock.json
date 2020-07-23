@@ -11,8 +11,8 @@
 
       [ "has_the_recipe_redstone" ],
       [ "has_the_recipe_iron" ],
+      [ "has_the_recipe_netherite" ],
       [ "has_the_recipe_quartz" ],
-      [ "has_the_recipe_gold" ],
 
       [ "has_the_recipe_sigma" ],
       [ "has_the_recipe_delta" ],
@@ -79,16 +79,16 @@
         "recipe": "jacko:iron_for_emerald"
       }
     },
+    "has_the_recipe_netherite": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "jacko:netherite_for_emerald"
+      }
+    },
     "has_the_recipe_quartz": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "jacko:quartz_for_emerald"
-      }
-    },
-    "has_the_recipe_gold": {
-      "trigger": "minecraft:recipe_unlocked",
-      "conditions": {
-        "recipe": "jacko:gold_for_emerald"
       }
     },
 
@@ -151,8 +151,8 @@
 
       "jacko:redstone_for_emerald",
       "jacko:iron_for_emerald",
+      "jacko:netherite_for_emerald",
       "jacko:quartz_for_emerald",
-      "jacko:gold_for_emerald",
 
       "jacko:sigma_for_emerald",
       "jacko:delta_for_emerald",
