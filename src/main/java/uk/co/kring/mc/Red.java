@@ -5,7 +5,10 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -34,13 +37,35 @@ import static net.minecraft.util.Direction.*;
  *    for the reason why, see http://greyminecraftcoder.blogspot.com/2020/05/redstone-1152.html
  */
 public class Red extends Block {
+    final static DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
+
     public Red() {
-        super(Block.Properties.create(Material.IRON));
+        super(Block.Properties.create(Material.MISCELLANEOUS));//.doesNotBlockMovement());
+        BlockState defaultBlockState = stateContainer.getBaseState().with(FACING, Direction.NORTH);
+        setDefaultState(defaultBlockState);
+    }
+
+    @Override
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
     }
 
     @Override
     public boolean hasTileEntity(BlockState state) {
         return true;
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext blockItemUseContext) {
+        //World world = blockItemUseContext.getWorld();
+        //BlockPos blockPos = blockItemUseContext.getPos();
+
+        Direction direction = blockItemUseContext.getPlacementHorizontalFacing();  // north, east, south, or west
+        //float playerFacingDirectionAngle = blockItemUseContext.getPlacementYaw(); //if you want more directions than just NESW, you can use the yaw instead.
+        // likewise the pitch is also available for up/down placement.
+
+        BlockState blockState = getDefaultState().with(FACING, direction);
+        return blockState;
     }
 
     // Called when the block is placed or loaded client side to get the tile entity for the block
@@ -71,6 +96,8 @@ public class Red extends Block {
     public boolean canConnectRedstone(BlockState state, IBlockReader world, BlockPos pos, @Nullable Direction side) {
         return true;//output side
     }
+
+
 
     /** How much weak power does this block provide to the adjacent block?
      * The meter provides weak power to the block above it.

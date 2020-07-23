@@ -1,5 +1,8 @@
 {
   "variants": {
-    "": { "model": "jacko:block/red" }
+    "facing=north": { "model": "jacko:block/red"},
+    "facing=east": { "model": "jacko:block/red", "y": 90 },
+    "facing=south": { "model": "jacko:block/red", "y": 180 },
+    "facing=west": { "model": "jacko:block/red", "y": 270 }
   }
 }
