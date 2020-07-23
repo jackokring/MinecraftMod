@@ -8,6 +8,7 @@ import net.minecraft.command.Commands;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
@@ -29,7 +30,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 //IMC multiple IPC combine to list received values of sent evaluations of closure results
-import java.rmi.registry.RegistryHandler;
 import java.util.stream.Collectors;
 
 //command arguments
@@ -43,8 +43,9 @@ import static uk.co.kring.mc.Blocks.*;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("jacko")
-public class Jacko
-{
+public class Jacko {
+
+    public static TileEntityType<TileEntityCommon> tileEntityDataType;
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -222,5 +223,14 @@ public class Jacko
             potion.setRegistryName("jacko", "zerog");
             event.getRegistry().register(potion);
         }
+
+        /* @SubscribeEvent
+        public static void registerTileEntityTypes(final RegistryEvent.Register<TileEntityType<?>> event) {
+            tileEntityDataType = TileEntityType.Builder
+                    .create(TileEntityCommon::new, blockRedstoneMeter).build(null);
+            // you probably don't need a datafixer --> null should be fine
+            tileEntityDataType.setRegistryName("minecraftbyexample:mbe06_tile_entity_type_registry_name");
+            event.getRegistry().register(tileEntityDataType);
+        } */
     }
 }

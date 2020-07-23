@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "block/iron_block",
+    "up": "block/iron_block",
+    "north": "jacko:block/red.json",
+    "east": "jacko:block/red.json",
+    "south": "jacko:block/red.json",
+    "west": "jacko:block/red.json",
+    "particle": "jacko:block/red.json"
+  }
+}
