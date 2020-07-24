@@ -1,20 +1,20 @@
 package uk.co.kring.mc;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -51,8 +51,14 @@ public class Red extends Block {
     }
 
     @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
+                                             Hand handIn, BlockRayTraceResult hit) {
+        //stateContainer.getProperty("facing") ...
+        //stateContainer.getProperty("facing") ... can't write
+        if(worldIn.isRemote) {
+
+        }
+        return ActionResultType.SUCCESS;
     }
 
     @Override
@@ -66,13 +72,6 @@ public class Red extends Block {
 
         BlockState blockState = getDefaultState().with(FACING, direction);
         return blockState;
-    }
-
-    // Called when the block is placed or loaded client side to get the tile entity for the block
-    // Should return a new instance of the tile entity for the block
-    @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader blockReader) {
-        return new TileEntityCommon();
     }
 
     // ------ methods relevant to redstone
@@ -97,8 +96,6 @@ public class Red extends Block {
         return true;//output side
     }
 
-
-
     /** How much weak power does this block provide to the adjacent block?
      * The meter provides weak power to the block above it.
      * The meter flashes the power according to how strong the input signals are
@@ -118,10 +115,10 @@ public class Red extends Block {
 
         boolean isOutputOn = false;
         TileEntity tileentity = blockReader.getTileEntity(pos);
-        if (tileentity instanceof TileEntityCommon) { // prevent a crash if not the right type, or is null
+        /* if (tileentity instanceof TileEntityCommon) { // prevent a crash if not the right type, or is null
             TileEntityCommon tileEntityRedstoneMeter = (TileEntityCommon) tileentity;
             isOutputOn = tileEntityRedstoneMeter.getOutputState();
-        }
+        } */
 
         final int OUTPUT_POWER_WHEN_ON = 15;
         return isOutputOn ? OUTPUT_POWER_WHEN_ON : 0;
@@ -175,7 +172,7 @@ public class Red extends Block {
     //
     @Override
     public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
-        TileEntity te = world.getTileEntity(pos);
+         /* TileEntity te = world.getTileEntity(pos);
         if (te instanceof TileEntityCommon) {
             TileEntityCommon tileEntityCommon = (TileEntityCommon) te;
 
@@ -186,7 +183,7 @@ public class Red extends Block {
             if (newOutputState != currentOutputState) {
                 world.notifyNeighborsOfStateChange(pos, this);
             }
-        }
+        } */
     }
 
     /**
@@ -197,21 +194,10 @@ public class Red extends Block {
         // not needed here
     }
 
-    // not needed for this block because we have only one blockstate
-    @Override
-    public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-        super.onBlockAdded(state, worldIn, pos, oldState, isMoving);
-    }
-
-    // not needed for this block because we have only one blockstate
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        super.onReplaced(state, worldIn, pos, newState, isMoving);
-    }
-
     private void calculatePowerInputAndNotifyNeighbors(World world, BlockPos pos) {
         // calculate the power level from neighbours and store in our TileEntity for later use in getWeakPower()
         int powerLevel = getPowerLevelInputFromNeighbours(world, pos);
-        TileEntity tileentity = world.getTileEntity(pos);
+        /* TileEntity tileentity = world.getTileEntity(pos);
         if (tileentity instanceof TileEntityCommon) { // prevent a crash if not the right type, or is null
             TileEntityCommon tileEntityCommon = (TileEntityCommon) tileentity;
 
@@ -222,21 +208,6 @@ public class Red extends Block {
             if (currentOutputState != tileEntityCommon.getOutputState()) {
                 world.notifyNeighborsOfStateChange(pos, this);
             }
-        }
+        } */
     }
-
-    //----- methods related to the block's appearance (see MBE01_BLOCK_SIMPLE and MBE02_BLOCK_PARTIAL)
-
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return VoxelShapes.fullCube();
-    }
-
-    // render using a BakedModel
-    // not strictly required because the default (super method) is MODEL.
-    @Override
-    public BlockRenderType getRenderType(BlockState iBlockState) {
-        return BlockRenderType.MODEL;
-    }
-
 }
