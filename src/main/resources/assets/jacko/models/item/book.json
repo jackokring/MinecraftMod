@@ -54,7 +54,7 @@
           [
               { "text": "Π [PI] the productive gains.", "color": "dark_green" },
               { "text": "\n\nLike a comparator with a green tint. With strong REDSTONE close to being:" },
-              { "text": "\n\n Torch Off:\n  [not[A xor B] and not[IN]] or [[A xor B] and IN].\n Torch On:\n  Inconsistent.", "bold":  true }
+              { "text": "\n\n Torch Off:\n  [not[A xor B] and IN] or [[A xor B] and not[IN]].\n Torch On:\n  Inconsistent.", "bold":  true }
           ],
           { "text": "The word is this sequences things in the digital worlds.\n\nEverything is counts and equalities." },
 

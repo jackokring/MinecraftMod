@@ -15,6 +15,10 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -40,7 +44,7 @@ public class Red extends Block {
     final static DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
 
     public Red() {
-        super(Block.Properties.create(Material.MISCELLANEOUS));//.doesNotBlockMovement());
+        super(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement());
         BlockState defaultBlockState = stateContainer.getBaseState().with(FACING, Direction.NORTH);
         setDefaultState(defaultBlockState);
     }
@@ -209,5 +213,27 @@ public class Red extends Block {
                 world.notifyNeighborsOfStateChange(pos, this);
             }
         } */
+    }
+
+    // for this model, we're making the shape match the block model exactly - see assets\minecraftbyexample\models\block\mbe02_block_partial_model.json
+    private static final Vector3d BASE_MIN_CORNER = new Vector3d(0.0, 0.0, 0.0);
+    private static final Vector3d BASE_MAX_CORNER = new Vector3d(16.0, 2.0, 16.0);
+    private static final Vector3d PILLAR_MIN_CORNER = new Vector3d(7.0, 2.0, 7.0);
+    private static final Vector3d PILLAR_MAX_CORNER = new Vector3d(9.0, 8.0, 9.0);
+
+    private static final VoxelShape BASE = Block.makeCuboidShape(BASE_MIN_CORNER.getX(), BASE_MIN_CORNER.getY(), BASE_MIN_CORNER.getZ(),
+            BASE_MAX_CORNER.getX(), BASE_MAX_CORNER.getY(), BASE_MAX_CORNER.getZ());
+    private static final VoxelShape PILLAR = Block.makeCuboidShape(PILLAR_MIN_CORNER.getX(), PILLAR_MIN_CORNER.getY(), PILLAR_MIN_CORNER.getZ(),
+            PILLAR_MAX_CORNER.getX(), PILLAR_MAX_CORNER.getY(), PILLAR_MAX_CORNER.getZ());
+
+    private static VoxelShape COMBINED_SHAPE = VoxelShapes.or(BASE, PILLAR);  // use this method to add two shapes together
+
+    // returns the shape of the block:
+    //  The image that you see on the screen (when a block is rendered) is determined by the block model (i.e. the model json file).
+    //  But Minecraft also uses a number of other "shapes" to control the interaction of the block with its environment and with the player.
+    // See  https://greyminecraftcoder.blogspot.com/2020/02/block-shapes-voxelshapes-1144.html
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return COMBINED_SHAPE;
     }
 }
