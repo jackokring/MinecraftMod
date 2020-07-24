@@ -7,6 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
@@ -42,25 +43,30 @@ import static net.minecraft.util.Direction.*;
  */
 public class Red extends Block {
     final static DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
+    final static BooleanProperty ON = BooleanProperty.create("on");
 
     public Red() {
         super(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement());
-        BlockState defaultBlockState = stateContainer.getBaseState().with(FACING, Direction.NORTH);
+        BlockState defaultBlockState = stateContainer.getBaseState().with(FACING, Direction.NORTH)
+                .with(ON, false);
         setDefaultState(defaultBlockState);
     }
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING, ON);
     }
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
                                              Hand handIn, BlockRayTraceResult hit) {
-        //stateContainer.getProperty("facing") ...
-        //stateContainer.getProperty("facing") ... can't write
+        if(state.get(ON)) {
+            worldIn.setBlockState(pos, state.with(ON, false));
+        } else {
+            worldIn.setBlockState(pos, state.with(ON, true));
+        }
         if(worldIn.isRemote) {
-
+            //server only
         }
         return ActionResultType.SUCCESS;
     }
@@ -74,7 +80,8 @@ public class Red extends Block {
         //float playerFacingDirectionAngle = blockItemUseContext.getPlacementYaw(); //if you want more directions than just NESW, you can use the yaw instead.
         // likewise the pitch is also available for up/down placement.
 
-        BlockState blockState = getDefaultState().with(FACING, direction);
+        BlockState blockState = getDefaultState().with(FACING, direction)
+                .with(ON, false);
         return blockState;
     }
 
