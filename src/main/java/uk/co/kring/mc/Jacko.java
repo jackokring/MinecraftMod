@@ -8,7 +8,7 @@ import net.minecraft.command.Commands;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-//import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
@@ -45,7 +45,7 @@ import static uk.co.kring.mc.Blocks.*;
 @Mod("jacko")
 public class Jacko {
 
-    //public static TileEntityType<TileEntityCommon> tileEntityDataType;
+    public static TileEntityType<DelayTileEntity> tileEntityDataType;
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -235,13 +235,14 @@ public class Jacko {
             event.getRegistry().register(unlockItem);
         }
 
-        /* @SubscribeEvent
-        public static void registerTileEntityTypes(final RegistryEvent.Register<TileEntityType<?>> event) {
+        @SubscribeEvent
+        public static void registerTE(final RegistryEvent.Register<TileEntityType<?>> event) {
             tileEntityDataType = TileEntityType.Builder
-                    .create(TileEntityCommon::new, blockRedstoneMeter).build(null);
+                    .create(DelayTileEntity::new, sigma).build(null);
+            //technically type is null and used in constructor before assignment (pokey pointer variant generic?)
             // you probably don't need a datafixer --> null should be fine
-            tileEntityDataType.setRegistryName("minecraftbyexample:mbe06_tile_entity_type_registry_name");
+            tileEntityDataType.setRegistryName("delay_tile");
             event.getRegistry().register(tileEntityDataType);
-        } */
+        }
     }
 }
