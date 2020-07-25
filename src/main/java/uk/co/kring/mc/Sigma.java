@@ -41,11 +41,11 @@ import static net.minecraft.util.Direction.*;
  * We use a TileEntity because our block needs to store the input power level, for later use when others call the getWeakPower().
  *    for the reason why, see http://greyminecraftcoder.blogspot.com/2020/05/redstone-1152.html
  */
-public class Red extends Block {
+public class Sigma extends Block {
     final static DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
     final static BooleanProperty ON = BooleanProperty.create("on");
 
-    public Red() {
+    public Sigma() {
         super(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement());
         BlockState defaultBlockState = stateContainer.getBaseState().with(FACING, Direction.NORTH)
                 .with(ON, false);

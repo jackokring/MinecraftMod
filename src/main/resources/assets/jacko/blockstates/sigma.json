@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,on=false": { "model": "jacko:block/sigma"},
+    "facing=east,on=false": { "model": "jacko:block/sigma", "y": 90 },
+    "facing=south,on=false": { "model": "jacko:block/sigma", "y": 180 },
+    "facing=west,on=false": { "model": "jacko:block/sigma", "y": 270 },
+    "facing=north,on=true": { "model": "jacko:block/sigma_on"},
+    "facing=east,on=true": { "model": "jacko:block/sigma_on", "y": 90 },
+    "facing=south,on=true": { "model": "jacko:block/sigma_on", "y": 180 },
+    "facing=west,on=true": { "model": "jacko:block/sigma_on", "y": 270 }
+  }
+}

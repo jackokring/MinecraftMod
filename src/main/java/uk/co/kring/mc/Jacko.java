@@ -207,9 +207,9 @@ public class Jacko {
             //see @ObjectHolder in uk.co.kring.mc.Blocks field import static
             event.getRegistry().register(unlock);
 
-            red = new Red();
-            red.setRegistryName("jacko", "red");
-            event.getRegistry().register(red);
+            sigma = new Sigma();
+            sigma.setRegistryName("jacko", "sigma");
+            event.getRegistry().register(sigma);
         }
 
         @SubscribeEvent
@@ -230,8 +230,8 @@ public class Jacko {
             event.getRegistry().register(potion);
 
             itemP = new Item.Properties().group(ItemGroup.MISC);
-            BlockItem redItem = new BlockItem(red, itemP);
-            unlockItem.setRegistryName(red.getRegistryName());
+            BlockItem redItem = new BlockItem(sigma, itemP);
+            unlockItem.setRegistryName(sigma.getRegistryName());
             event.getRegistry().register(unlockItem);
         }
 

@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "particle": "jacko:block/red",
-    "all": "jacko:block/red"
+    "particle": "jacko:block/sigma",
+    "all": "jacko:block/sigma"
   },
   "elements": [
     {
