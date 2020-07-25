@@ -8,7 +8,7 @@ import net.minecraft.command.Commands;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.tileentity.TileEntityType;
+//import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
@@ -45,7 +45,7 @@ import static uk.co.kring.mc.Blocks.*;
 @Mod("jacko")
 public class Jacko {
 
-    public static TileEntityType<TileEntityCommon> tileEntityDataType;
+    //public static TileEntityType<TileEntityCommon> tileEntityDataType;
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -197,7 +197,7 @@ public class Jacko {
 
         @SubscribeEvent
         public static void registerBlocks(RegistryEvent.Register<Block> event) {
-            Block unlock = new OreBlock(Block.Properties.create(Material.ROCK)
+            Block unlock = new Block(Block.Properties.create(Material.MISCELLANEOUS)
                     .hardnessAndResistance(3f, 3f) //emerald level
                     .sound(SoundType.STONE)
                     .slipperiness(0.5f)

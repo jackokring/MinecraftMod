@@ -60,13 +60,13 @@ public class Red extends Block {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
                                              Hand handIn, BlockRayTraceResult hit) {
-        if(state.get(ON)) {
-            worldIn.setBlockState(pos, state.with(ON, false));
-        } else {
-            worldIn.setBlockState(pos, state.with(ON, true));
-        }
         if(worldIn.isRemote) {
-            //server only
+            //server only world update
+            if (state.get(ON)) {
+                worldIn.setBlockState(pos, state.with(ON, false));
+            } else {
+                worldIn.setBlockState(pos, state.with(ON, true));
+            }
         }
         return ActionResultType.SUCCESS;
     }
