@@ -197,7 +197,7 @@ public class Jacko {
 
         @SubscribeEvent
         public static void registerBlocks(RegistryEvent.Register<Block> event) {
-            Block unlock = new Block(Block.Properties.create(Material.MISCELLANEOUS)
+            unlock = new Block(Block.Properties.create(Material.MISCELLANEOUS)
                     .hardnessAndResistance(3f, 3f) //emerald level
                     .sound(SoundType.STONE)
                     .slipperiness(0.5f)
@@ -206,22 +206,33 @@ public class Jacko {
             unlock.setRegistryName("jacko", "unlock");
             //see @ObjectHolder in uk.co.kring.mc.Blocks field import static
             event.getRegistry().register(unlock);
+
+            red = new Red();
+            red.setRegistryName("jacko", "red");
+            event.getRegistry().register(red);
         }
 
         @SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event) {
-            Item.Properties itemP = new Item.Properties().group(ItemGroup.MATERIALS);
+            Item.Properties itemP = new Item.Properties().group(ItemGroup.MISC);
             BlockItem unlockItem = new BlockItem(unlock, itemP);
             unlockItem.setRegistryName(unlock.getRegistryName());
             event.getRegistry().register(unlockItem);
+
             itemP = new Item.Properties().group(ItemGroup.MISC);
             Item bookItem = new Item(itemP);
             bookItem.setRegistryName("jacko", "book");
             event.getRegistry().register(bookItem);
+
             itemP = new Item.Properties().group(ItemGroup.BREWING);
             Item potion = new Item(itemP);
             potion.setRegistryName("jacko", "zerog");
             event.getRegistry().register(potion);
+
+            itemP = new Item.Properties().group(ItemGroup.MISC);
+            BlockItem redItem = new BlockItem(red, itemP);
+            unlockItem.setRegistryName(red.getRegistryName());
+            event.getRegistry().register(unlockItem);
         }
 
         /* @SubscribeEvent
