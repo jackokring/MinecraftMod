@@ -5,9 +5,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.pattern.BlockMatcher;
 import net.minecraft.command.Commands;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -198,10 +196,9 @@ public class Jacko {
         @SubscribeEvent
         public static void registerBlocks(RegistryEvent.Register<Block> event) {
             unlock = new Block(Block.Properties.create(Material.MISCELLANEOUS)
-                    .hardnessAndResistance(3f, 3f) //emerald level
-                    .sound(SoundType.STONE)
-                    .slipperiness(0.5f)
-                    .harvestTool(ToolType.PICKAXE)
+                    //.hardnessAndResistance(3f, 3f) //emerald level
+                    .sound(SoundType.SCAFFOLDING)
+                    //.slipperiness(0.5f)
             );
             unlock.setRegistryName("jacko", "unlock");
             //see @ObjectHolder in uk.co.kring.mc.Blocks field import static
@@ -214,22 +211,34 @@ public class Jacko {
 
         @SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event) {
-            Item.Properties itemP = new Item.Properties().group(ItemGroup.MISC);
+            final int MAXIMUM_STACK_SIZE = 64;
+            final ItemGroup customItemGroup = new ItemGroup("jacko_item_group") {
+                @Override
+                public ItemStack createIcon() {
+                    return new ItemStack(Items.EMERALD);
+                }
+            };
+
+            Item.Properties itemP = new Item.Properties().group(customItemGroup)
+                    .maxStackSize(MAXIMUM_STACK_SIZE);
             BlockItem unlockItem = new BlockItem(unlock, itemP);
             unlockItem.setRegistryName(unlock.getRegistryName());
             event.getRegistry().register(unlockItem);
 
-            itemP = new Item.Properties().group(ItemGroup.MISC);
+            itemP = new Item.Properties().group(customItemGroup)
+                    .maxStackSize(MAXIMUM_STACK_SIZE);
             Item bookItem = new Item(itemP);
             bookItem.setRegistryName("jacko", "book");
             event.getRegistry().register(bookItem);
 
-            itemP = new Item.Properties().group(ItemGroup.BREWING);
+            itemP = new Item.Properties().group(customItemGroup)
+                    .maxStackSize(MAXIMUM_STACK_SIZE);
             Item potion = new Item(itemP);
             potion.setRegistryName("jacko", "zerog");
             event.getRegistry().register(potion);
 
-            itemP = new Item.Properties().group(ItemGroup.MISC);
+            itemP = new Item.Properties().group(customItemGroup)
+                    .maxStackSize(MAXIMUM_STACK_SIZE);
             BlockItem redItem = new BlockItem(sigma, itemP);
             unlockItem.setRegistryName(sigma.getRegistryName());
             event.getRegistry().register(unlockItem);

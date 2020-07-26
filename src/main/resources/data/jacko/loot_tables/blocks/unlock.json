@@ -2,12 +2,12 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "jacko:sigma_pool",
+      "name": "jacko:unlock_pool",
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "jacko:sigma"
+          "name": "jacko:unlock"
         }
       ],
       "conditions": [

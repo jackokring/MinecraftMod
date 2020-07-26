@@ -75,9 +75,14 @@ public class Sigma extends Block {
         return true;//comparator style weak inputs yes
     }
 
+    //outputs only
     @Override
     public boolean canConnectRedstone(BlockState state, IBlockReader world, BlockPos pos, @Nullable Direction side) {
-        return true;//output side
+        if(side != null) {
+            return state.get(FACING).getOpposite() == side;//output side
+        } else {
+            return false;//no stepped connection
+        }
     }
 
     // Retrieve the current input power levels - sides EAST, WEST, NORTH, SOUTH
@@ -111,7 +116,8 @@ public class Sigma extends Block {
     //================================================================
     // Using block state construction via properties gives factory paradigm.
     // This makes overriding block state methods kind of difficult.
-    //
+    // So the intent is allow overrides but proxy when calling them via IBlockProperties
+    // This is perhaps to allow extension of code base to things other than standard block massive method set OK
 
     /**
      * What happens when a piston block pushes this?
@@ -151,10 +157,11 @@ public class Sigma extends Block {
                                              Hand handIn, BlockRayTraceResult hit) {
         if (!worldIn.isRemote) {//is local I.E. SERVER
             //server only world update
+            final int FLAGS = SetBlockStateFlag.get(SetBlockStateFlag.BLOCK_UPDATE, SetBlockStateFlag.SEND_TO_CLIENTS);
             if (state.get(ON)) {
-                worldIn.setBlockState(pos, state.with(ON, false));
+                worldIn.setBlockState(pos, state.with(ON, false), FLAGS);
             } else {
-                worldIn.setBlockState(pos, state.with(ON, true));
+                worldIn.setBlockState(pos, state.with(ON, true), FLAGS);
             }
         } else {
             //client only
@@ -205,13 +212,17 @@ public class Sigma extends Block {
     // Called when a neighbouring block changes.
     // Only called on the server side- so it doesn't help us alter rendering on the client side.
     @Override
-    public void neighborChanged(BlockState currentState, World world, BlockPos pos, Block blockIn,
+    public void neighborChanged(BlockState state, World world, BlockPos pos, Block blockIn,
                                 BlockPos fromPos, boolean isMoving) {
-        calculatePowerInput(world, pos, currentState);
+        if (state.isValidPosition(world, pos)) {
+            calculatePowerInput(world, pos, state);
+        } else {
+            spawnDrops(state, world, pos);
+            world.removeBlock(pos, false);
+        }
     }
 
     // for this model, we're making the shape match the block model exactly
-    // see assets\minecraftbyexample\models\block\mbe02_block_partial_model.json
     private static final Vector3d BASE_MIN_CORNER = new Vector3d(0.0, 0.0, 0.0);
     private static final Vector3d BASE_MAX_CORNER = new Vector3d(16.0, 2.0, 16.0);
     private static final Vector3d PILLAR_MIN_CORNER = new Vector3d(7.0, 2.0, 7.0);

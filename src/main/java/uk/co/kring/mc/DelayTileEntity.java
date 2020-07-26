@@ -2,8 +2,13 @@ package uk.co.kring.mc;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+
+import javax.annotation.Nullable;
+
 import static uk.co.kring.mc.Jacko.tileEntityDataType;
 import static uk.co.kring.mc.Sigma.ON;
 
@@ -37,6 +42,14 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
         return tag;//filled in complete
     }
 
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket() {
+        CompoundNBT updateTagDescribingTileEntityState = getUpdateTag();
+        final int METADATA = 44; // arbitrary.
+        return new SUpdateTileEntityPacket(pos, METADATA, updateTagDescribingTileEntityState);
+    }
+
     //RECEIVE
     @Override
     public void handleUpdateTag(BlockState bs, CompoundNBT tag) {
@@ -48,6 +61,11 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
     }
 
     @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+        handleUpdateTag(getBlockState(), pkt.getNbtCompound());//pass down
+    }
+
+    @Override
     //warning! tick must sync setting of powerOut else recursive problems with notification for feedback loops
     public void tick() {
         if (!hasWorld()) return;//unloaded?
@@ -55,7 +73,8 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
         //process to find new powerOut
         if (oldPower != powerOut) {
             markDirty();//send client updates?
-            world.setBlockState(pos, getBlockState().with(ON, powerOut != 0));
+            final int FLAGS = SetBlockStateFlag.get(SetBlockStateFlag.BLOCK_UPDATE, SetBlockStateFlag.SEND_TO_CLIENTS);
+            world.setBlockState(pos, getBlockState().with(ON, powerOut != 0), FLAGS);
             world.notifyNeighborsOfStateChange(pos, getBlockState().getBlock());
         }
     }
