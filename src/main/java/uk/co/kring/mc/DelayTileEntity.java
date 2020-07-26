@@ -47,7 +47,14 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
     }
 
     @Override
+    //warning! tick must sync setting of powerOut else recursive problems with notification for feedback loops
     public void tick() {
-
+        if (!hasWorld()) return;//unloaded?
+        int oldPower = powerOut;
+        //process to find new powerOut
+        if (oldPower != powerOut) {
+            markDirty();//send client updates?
+            world.notifyNeighborsOfStateChange(pos, getBlockState().getBlock());
+        }
     }
 }
