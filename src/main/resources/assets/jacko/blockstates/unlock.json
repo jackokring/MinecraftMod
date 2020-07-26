@@ -1,7 +1,7 @@
 {
   "variants": {
     "": [
-      { "model": "jacko:block/unlock" }
+      { "model": "jacko:unlock" }
     ]
   }
 }

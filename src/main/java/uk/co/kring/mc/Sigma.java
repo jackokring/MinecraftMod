@@ -31,11 +31,12 @@ import static net.minecraft.util.Direction.*;
 public class Sigma extends Block {
     final static DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
     final static BooleanProperty ON = BooleanProperty.create("on");
+    final static BooleanProperty POWERED = BooleanProperty.create("powered");
 
     public Sigma() {
         super(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement());
         BlockState defaultBlockState = stateContainer.getBaseState().with(FACING, Direction.NORTH)
-                .with(ON, false);
+                .with(ON, false).with(POWERED, false);
         setDefaultState(defaultBlockState);
     }
 
@@ -65,8 +66,7 @@ public class Sigma extends Block {
         // if you want more directions than just N, E, S and W, you can use the yaw instead.
         // likewise the pitch is also available for up/down placement.
 
-        BlockState blockState = getDefaultState().with(FACING, direction)
-                .with(ON, false);
+        BlockState blockState = getDefaultState().with(FACING, direction);
         return blockState;
     }
 
@@ -81,6 +81,7 @@ public class Sigma extends Block {
     }
 
     // Retrieve the current input power levels - sides EAST, WEST, NORTH, SOUTH
+    // server only
     protected void calculatePowerInput(World world, BlockPos pos, BlockState state) {
 
         // int powerLevel = world.getRedstonePowerFromNeighbors(pos);

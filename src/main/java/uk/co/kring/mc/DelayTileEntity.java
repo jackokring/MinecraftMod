@@ -5,6 +5,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import static uk.co.kring.mc.Jacko.tileEntityDataType;
+import static uk.co.kring.mc.Sigma.ON;
 
 public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
     int powerOut = 0;
@@ -54,6 +55,7 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
         //process to find new powerOut
         if (oldPower != powerOut) {
             markDirty();//send client updates?
+            world.setBlockState(pos, getBlockState().with(ON, powerOut != 0));
             world.notifyNeighborsOfStateChange(pos, getBlockState().getBlock());
         }
     }
