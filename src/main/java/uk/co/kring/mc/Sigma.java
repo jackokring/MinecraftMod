@@ -30,17 +30,6 @@ import java.util.Random;
 
 import static net.minecraft.util.Direction.*;
 
-/**
- * User: The Grey Ghost
- * Date: 27/11/2015
- *
- * BlockRedstoneMeter is a simple block with an associated TileEntity to render the block's power level.
- * It gets weak power from all directions except UP.
- * The meter provides weak power to the block UP - if a lamp is placed on top of the meter, it will flash
- *   at a speed related to the input power.
- * We use a TileEntity because our block needs to store the input power level, for later use when others call the getWeakPower().
- *    for the reason why, see http://greyminecraftcoder.blogspot.com/2020/05/redstone-1152.html
- */
 public class Sigma extends Block {
     final static DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
     final static BooleanProperty ON = BooleanProperty.create("on");
@@ -96,13 +85,6 @@ public class Sigma extends Block {
         return blockState;
     }
 
-    // ------ methods relevant to redstone
-    //  The methods below are used to provide power to neighbours.
-
-    /**
-     * This block can provide power
-     * @return
-     */
     @Override
     public boolean canProvidePower(BlockState iBlockState) {
         return true;
@@ -119,8 +101,6 @@ public class Sigma extends Block {
     }
 
     /** How much weak power does this block provide to the adjacent block?
-     * The meter provides weak power to the block above it.
-     * The meter flashes the power according to how strong the input signals are
      * See https://greyminecraftcoder.blogspot.com/2020/05/redstone-1152.html for more information
      * @param blockReader
      * @param pos the position of this block
@@ -131,23 +111,16 @@ public class Sigma extends Block {
     @Override
     public int getWeakPower(BlockState state, IBlockReader blockReader, BlockPos pos,
                             Direction directionFromNeighborToThis) {
-        if (directionFromNeighborToThis != DOWN) {
-            return 0;
-        }
-
-        boolean isOutputOn = false;
-        TileEntity tileentity = blockReader.getTileEntity(pos);
-        /* if (tileentity instanceof TileEntityCommon) { // prevent a crash if not the right type, or is null
-            TileEntityCommon tileEntityRedstoneMeter = (TileEntityCommon) tileentity;
-            isOutputOn = tileEntityRedstoneMeter.getOutputState();
-        } */
-
-        final int OUTPUT_POWER_WHEN_ON = 15;
-        return isOutputOn ? OUTPUT_POWER_WHEN_ON : 0;
+        return 0;//no weak power emitted
     }
 
+    final Direction[] driving = new Direction[]{ WEST, EAST, NORTH, SOUTH };
+    final Direction[] me = new Direction[]{ EAST, WEST, SOUTH, NORTH };
+    final Direction[] left = new Direction[]{ NORTH, SOUTH, EAST, WEST };
+    final Direction[] right = new Direction[]{ SOUTH, NORTH, WEST, EAST };
+
     /**
-     *  The redstone meter doesn't provide strong power to any other block.
+     * Strong power to any other block.
      * @param worldIn
      * @param pos the position of this block
      * @param state the blockstate of this block
@@ -158,25 +131,40 @@ public class Sigma extends Block {
     @Override
     public int getStrongPower(BlockState state, IBlockReader worldIn, BlockPos pos,
                               Direction directionFromNeighborToThis) {
-        return 0;
+        for(int i = 0; i < driving.length; ++i) {
+            if(driving[i] == directionFromNeighborToThis) {
+                if(state.get(FACING) == me[i]) {
+                    TileEntity d = worldIn.getTileEntity(pos);
+                    if(d instanceof DelayTileEntity) {
+                        return ((DelayTileEntity)d).powerOut;//return delayed calculated power
+                    } else return 0;
+                }
+            }
+        }
+        return 0;//else no power
     }
 
-    // Retrieve the current input power level of the meter - the maximum of the five sides EAST, WEST, NORTH, SOUTH, DOWN
-    //   Don't look UP
-    private int getPowerLevelInputFromNeighbours(World world, BlockPos pos) {
+    // Retrieve the current input power levels - sides EAST, WEST, NORTH, SOUTH
+    private void calculatePowerInput(World world, BlockPos pos, BlockState state) {
 
-//    int powerLevel = world.getRedstonePowerFromNeighbors(pos);  // if input can come from any side, use this line
-
-        int maxPowerFound = 0;
-        Direction [] directions = new Direction[]{DOWN, WEST, EAST, NORTH, SOUTH};
-
-        for (Direction whichFace : directions) {
-            BlockPos neighborPos = pos.offset(whichFace);
-            int powerLevel = world.getRedstonePower(neighborPos, whichFace);
-            maxPowerFound = Math.max(powerLevel, maxPowerFound);
+    // int powerLevel = world.getRedstonePowerFromNeighbors(pos);
+    // if input can come from any side, use this line
+        for(int i = 0; i < me.length; ++i) {
+            if(me[i] == state.get(FACING)) {
+                TileEntity d = world.getTileEntity(pos);
+                DelayTileEntity dd;
+                if(d instanceof DelayTileEntity) {
+                    dd = (DelayTileEntity)d;
+                } else return;
+                BlockPos neighborPos = pos.offset(driving[i]);//main
+                dd.powerIn = world.getRedstonePower(neighborPos, driving[i]);
+                neighborPos = pos.offset(left[i]);//left
+                dd.powerLeft = world.getRedstonePower(neighborPos, left[i]);
+                neighborPos = pos.offset(right[i]);//right
+                dd.powerRight = world.getRedstonePower(neighborPos, right[i]);
+                return;
+            }
         }
-
-        return maxPowerFound;
     }
 
     // ------ various block methods that react to changes and are responsible for updating the redstone power information
@@ -186,10 +174,9 @@ public class Sigma extends Block {
     @Override
     public void neighborChanged(BlockState currentState, World world, BlockPos pos, Block blockIn,
                                 BlockPos fromPos, boolean isMoving) {
-        calculatePowerInputAndNotifyNeighbors(world, pos);
+        calculatePowerInput(world, pos, currentState);
     }
 
-    // Our flashing output uses scheduled ticks to toggle the output.
     //  Scheduling of ticks is by calling  world.scheduleTick(pos, block, numberOfTicksToDelay);  see ScheduledTogglingOutput
     //
     @Override
@@ -208,24 +195,8 @@ public class Sigma extends Block {
         } */
     }
 
-    private void calculatePowerInputAndNotifyNeighbors(World world, BlockPos pos) {
-        // calculate the power level from neighbours and store in our TileEntity for later use in getWeakPower()
-        int powerLevel = getPowerLevelInputFromNeighbours(world, pos);
-        /* TileEntity tileentity = world.getTileEntity(pos);
-        if (tileentity instanceof TileEntityCommon) { // prevent a crash if not the right type, or is null
-            TileEntityCommon tileEntityCommon = (TileEntityCommon) tileentity;
-
-            boolean currentOutputState = tileEntityCommon.getOutputState();
-            tileEntityCommon.setPowerLevelServer(powerLevel);
-            // this method will also schedule the next tick using call world.scheduleTick(pos, block, delay);
-
-            if (currentOutputState != tileEntityCommon.getOutputState()) {
-                world.notifyNeighborsOfStateChange(pos, this);
-            }
-        } */
-    }
-
-    // for this model, we're making the shape match the block model exactly - see assets\minecraftbyexample\models\block\mbe02_block_partial_model.json
+    // for this model, we're making the shape match the block model exactly
+    // see assets\minecraftbyexample\models\block\mbe02_block_partial_model.json
     private static final Vector3d BASE_MIN_CORNER = new Vector3d(0.0, 0.0, 0.0);
     private static final Vector3d BASE_MAX_CORNER = new Vector3d(16.0, 2.0, 16.0);
     private static final Vector3d PILLAR_MIN_CORNER = new Vector3d(7.0, 2.0, 7.0);

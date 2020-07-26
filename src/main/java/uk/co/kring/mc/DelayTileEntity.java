@@ -7,6 +7,11 @@ import net.minecraft.tileentity.TileEntity;
 import static uk.co.kring.mc.Jacko.tileEntityDataType;
 
 public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
+    int powerOut = 0;
+    int powerIn = 0;
+    int powerLeft = 0;
+    int powerRight = 0;
+
     public DelayTileEntity() {
         super(tileEntityDataType);
     }
@@ -18,6 +23,7 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
         tag = super.write(tag);//writes location etc ...
         //markDirty();//essential to trigger this
         //save data
+        tag.putInt("out", powerOut);
         return tag;
     }
 
@@ -36,6 +42,7 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
         //there is assumption this is called when loading phase happens to load server via updates?
         super.handleUpdateTag(bs, tag);//some docs say this does the readNBT
         //client side process
+        powerOut = tag.getInt("out");
         //updateNeedleFromPowerLevel();
     }
 
