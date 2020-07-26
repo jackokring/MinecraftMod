@@ -208,14 +208,6 @@ public class Sigma extends Block {
         } */
     }
 
-    /**
-     * Called by ItemBlocks after a block is set in the world, to allow post-place logic
-     */
-    @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        // not needed here
-    }
-
     private void calculatePowerInputAndNotifyNeighbors(World world, BlockPos pos) {
         // calculate the power level from neighbours and store in our TileEntity for later use in getWeakPower()
         int powerLevel = getPowerLevelInputFromNeighbours(world, pos);
@@ -246,10 +238,6 @@ public class Sigma extends Block {
 
     private static VoxelShape COMBINED_SHAPE = VoxelShapes.or(BASE, PILLAR);  // use this method to add two shapes together
 
-    // returns the shape of the block:
-    //  The image that you see on the screen (when a block is rendered) is determined by the block model (i.e. the model json file).
-    //  But Minecraft also uses a number of other "shapes" to control the interaction of the block with its environment and with the player.
-    // See  https://greyminecraftcoder.blogspot.com/2020/02/block-shapes-voxelshapes-1144.html
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return COMBINED_SHAPE;

@@ -19,7 +19,7 @@
     },
     {
       "from": [ 7, 2, 7 ],
-      "to": [ 9, 16, 9 ],
+      "to": [ 9, 8, 9 ],
       "faces": {
         "up":    { "uv": [8,14, 16,16], "texture": "#all", "cullface": "up" },
         "north": { "uv": [8,8, 10,14], "texture": "#all", "cullface": "north" },
