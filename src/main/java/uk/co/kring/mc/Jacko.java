@@ -38,12 +38,11 @@ import static com.mojang.brigadier.arguments.FloatArgumentType.*;
 
 //ObjectHolder
 import static uk.co.kring.mc.Blocks.*;
+import static uk.co.kring.mc.DelayTileEntity.tileEntityDataType;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("jacko")
 public class Jacko {
-
-    public static TileEntityType<DelayTileEntity> tileEntityDataType;
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 

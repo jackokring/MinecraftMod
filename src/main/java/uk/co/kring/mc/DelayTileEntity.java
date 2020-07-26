@@ -6,13 +6,14 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 
 import javax.annotation.Nullable;
 
-import static uk.co.kring.mc.Jacko.tileEntityDataType;
 import static uk.co.kring.mc.Sigma.ON;
 
 public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
+    public static TileEntityType<DelayTileEntity> tileEntityDataType;
     int powerOut = 0;
     int powerIn = 0;
     int powerLeft = 0;
