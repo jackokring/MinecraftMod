@@ -58,6 +58,8 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
         super.handleUpdateTag(bs, tag);//some docs say this does the readNBT
         //client side process
         powerOut = tag.getInt("out");
+        //final int FLAGS = SetBlockStateFlag.get(SetBlockStateFlag.BLOCK_UPDATE, SetBlockStateFlag.SEND_TO_CLIENTS);
+        //world.setBlockState(pos, getBlockState().with(ON, powerOut != 0), FLAGS);
         //updateNeedleFromPowerLevel();
     }
 
