@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
@@ -28,7 +29,7 @@ import javax.annotation.Nullable;
 
 import static net.minecraft.util.Direction.*;
 
-public class Sigma extends Block {
+public class Sigma extends Block implements CalculationProvider {
     final static DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
     final static BooleanProperty ON = BooleanProperty.create("on");
     final static BooleanProperty POWERED = BooleanProperty.create("powered");
@@ -47,8 +48,25 @@ public class Sigma extends Block {
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new DelayTileEntity();
+    public TileEntity createTileEntity(BlockState state,
+                                       IBlockReader world) {
+        DelayTileEntity te = new DelayTileEntity();
+        te.provider = this;
+        return te;
+    }
+    //============================================================================
+    // CALCULATION PROVIDER FOR REDSTONE
+    //============================================================================
+    public void pokeNBT(CompoundNBT tag) {
+
+    }
+
+    public void peekNBT(CompoundNBT tag) {
+
+    }
+
+    public int afterDelay() {
+        return 0;
     }
 
     @Override

@@ -18,6 +18,7 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
     int powerIn = 0;
     int powerLeft = 0;
     int powerRight = 0;
+    CalculationProvider provider;
 
     public DelayTileEntity() {
         super(tileEntityDataType);
@@ -31,6 +32,7 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
         //markDirty();//essential to trigger this
         //save data
         tag.putInt("out", powerOut);
+        if(provider != null) provider.pokeNBT(tag);
         return tag;
     }
 
@@ -58,6 +60,7 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
         super.handleUpdateTag(bs, tag);//some docs say this does the readNBT
         //client side process
         powerOut = tag.getInt("out");
+        if(provider != null) provider.peekNBT(tag);
         //final int FLAGS = SetBlockStateFlag.get(SetBlockStateFlag.BLOCK_UPDATE, SetBlockStateFlag.SEND_TO_CLIENTS);
         //world.setBlockState(pos, getBlockState().with(ON, powerOut != 0), FLAGS);
         //updateNeedleFromPowerLevel();
@@ -74,6 +77,7 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
         if (!hasWorld()) return;//unloaded?
         int oldPower = powerOut;
         //process to find new powerOut
+        if(provider != null) powerOut = provider.afterDelay();
         if (oldPower != powerOut) {
             markDirty();//send client updates?
             final int FLAGS = SetBlockStateFlag.get(SetBlockStateFlag.BLOCK_UPDATE, SetBlockStateFlag.SEND_TO_CLIENTS);

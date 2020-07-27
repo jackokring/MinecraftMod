@@ -249,7 +249,7 @@ public class Jacko {
                     .create(DelayTileEntity::new, sigma).build(null);
             //technically type is null and used in constructor before assignment (pokey pointer variant generic?)
             // you probably don't need a datafixer --> null should be fine
-            tileEntityDataType.setRegistryName("delay_tile");
+            tileEntityDataType.setRegistryName("delay_sigma");
             event.getRegistry().register(tileEntityDataType);
         }
 
