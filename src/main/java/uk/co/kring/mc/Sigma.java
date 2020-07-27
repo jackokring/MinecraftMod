@@ -11,9 +11,11 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -23,10 +25,12 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.RegistryManager;
 
 import javax.annotation.Nullable;
 
 import static net.minecraft.util.Direction.*;
+import static uk.co.kring.mc.Holder.sigma;
 
 public class Sigma extends Block {
     final static DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
@@ -50,6 +54,8 @@ public class Sigma extends Block {
     public TileEntity createTileEntity(BlockState state,
                                        IBlockReader world) {
         //TODO: behaviour alteration
+        ResourceLocation rl = getRegistryName();
+        //RegistryManager.ACTIVE.getRegistry(TileEntityType.class) ->
         return new SigmaTileEntity();
     }
 
