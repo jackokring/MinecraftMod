@@ -36,7 +36,6 @@ import static com.mojang.brigadier.arguments.IntegerArgumentType.*;
 
 //ObjectHolder
 import static uk.co.kring.mc.Holder.*;
-import static uk.co.kring.mc.DelayTileEntity.tileEntityDataType;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("jacko")
@@ -245,12 +244,12 @@ public class Jacko {
 
         @SubscribeEvent
         public static void registerTE(final RegistryEvent.Register<TileEntityType<?>> event) {
-            tileEntityDataType = TileEntityType.Builder
-                    .create(DelayTileEntity::new, sigma).build(null);
+            tileEntitySigma = TileEntityType.Builder
+                    .create(SigmaTileEntity::new, sigma).build(null);
             //technically type is null and used in constructor before assignment (pokey pointer variant generic?)
             // you probably don't need a datafixer --> null should be fine
-            tileEntityDataType.setRegistryName("delay_sigma");
-            event.getRegistry().register(tileEntityDataType);
+            tileEntitySigma.setRegistryName("te_sigma");
+            event.getRegistry().register(tileEntitySigma);
         }
 
         @SubscribeEvent

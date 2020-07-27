@@ -12,18 +12,21 @@ import javax.annotation.Nullable;
 
 import static uk.co.kring.mc.Sigma.ON;
 
-public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
-    public static TileEntityType<DelayTileEntity> tileEntityDataType;
+public abstract class DelayTileEntity extends TileEntity implements ITickableTileEntity, CalculationProvider {
+
+    public DelayTileEntity(TileEntityType tet) {
+        //botch enforcement of defining default constructor
+        super(tet);
+    }
+
     int powerOut = 0;
     int powerIn = 0;
     int powerLeft = 0;
     int powerRight = 0;
-    CalculationProvider provider;
 
-    public DelayTileEntity() {
-        super(tileEntityDataType);
-    }
-
+    //============================================================================
+    // NETWORK INTERACTION
+    //============================================================================
     // This is where you save any data that you don't want to lose when the tile entity unloads
     //SAVE
     @Override
@@ -32,7 +35,7 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
         //markDirty();//essential to trigger this
         //save data
         tag.putInt("out", powerOut);
-        if(provider != null) provider.pokeNBT(tag);
+        pokeNBT(tag);
         return tag;
     }
 
@@ -60,7 +63,7 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
         super.handleUpdateTag(bs, tag);//some docs say this does the readNBT
         //client side process
         powerOut = tag.getInt("out");
-        if(provider != null) provider.peekNBT(tag);
+        peekNBT(tag);
         //final int FLAGS = SetBlockStateFlag.get(SetBlockStateFlag.BLOCK_UPDATE, SetBlockStateFlag.SEND_TO_CLIENTS);
         //world.setBlockState(pos, getBlockState().with(ON, powerOut != 0), FLAGS);
         //updateNeedleFromPowerLevel();
@@ -71,13 +74,16 @@ public class DelayTileEntity extends TileEntity implements ITickableTileEntity {
         handleUpdateTag(getBlockState(), pkt.getNbtCompound());//pass down
     }
 
+    //============================================================================
+    // TICK INTERFACE
+    //============================================================================
     @Override
     //warning! tick must sync setting of powerOut else recursive problems with notification for feedback loops
     public void tick() {
         if (!hasWorld()) return;//unloaded?
         int oldPower = powerOut;
         //process to find new powerOut
-        if(provider != null) powerOut = provider.afterDelay();
+        powerOut = afterDelay();
         if (oldPower != powerOut) {
             markDirty();//send client updates?
             final int FLAGS = SetBlockStateFlag.get(SetBlockStateFlag.BLOCK_UPDATE, SetBlockStateFlag.SEND_TO_CLIENTS);
