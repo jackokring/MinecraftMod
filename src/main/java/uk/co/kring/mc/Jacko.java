@@ -6,6 +6,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.pattern.BlockMatcher;
 import net.minecraft.command.Commands;
 import net.minecraft.item.*;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -15,7 +17,6 @@ import net.minecraft.world.gen.placement.ConfiguredPlacement;
 import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -32,12 +33,9 @@ import java.util.stream.Collectors;
 
 //command arguments
 import static com.mojang.brigadier.arguments.IntegerArgumentType.*;
-import static com.mojang.brigadier.arguments.StringArgumentType.*;
-import static com.mojang.brigadier.arguments.BoolArgumentType.*;
-import static com.mojang.brigadier.arguments.FloatArgumentType.*;
 
 //ObjectHolder
-import static uk.co.kring.mc.Blocks.*;
+import static uk.co.kring.mc.Holder.*;
 import static uk.co.kring.mc.DelayTileEntity.tileEntityDataType;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -211,6 +209,8 @@ public class Jacko {
         @SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event) {
             final int MAXIMUM_STACK_SIZE = 64;
+            final int POTION_STACK_SIZE = 1;
+            final int BOOK_STACK_SIZE = 16;
             final ItemGroup customItemGroup = new ItemGroup("jacko_item_group") {
                 @Override
                 public ItemStack createIcon() {
@@ -218,29 +218,29 @@ public class Jacko {
                 }
             };
 
-            Item.Properties itemP = new Item.Properties().group(customItemGroup)
+            Item.Properties itemP = new BlockItem.Properties().group(customItemGroup)
                     .maxStackSize(MAXIMUM_STACK_SIZE);
             BlockItem unlockItem = new BlockItem(unlock, itemP);
             unlockItem.setRegistryName(unlock.getRegistryName());
             event.getRegistry().register(unlockItem);
 
-            itemP = new Item.Properties().group(customItemGroup)
-                    .maxStackSize(MAXIMUM_STACK_SIZE);
+            itemP = new BookItem.Properties().group(customItemGroup)
+                    .maxStackSize(BOOK_STACK_SIZE);
             Item bookItem = new Item(itemP);
             bookItem.setRegistryName("jacko", "book");
             event.getRegistry().register(bookItem);
 
-            itemP = new Item.Properties().group(customItemGroup)
-                    .maxStackSize(MAXIMUM_STACK_SIZE);
-            Item potion = new Item(itemP);
-            potion.setRegistryName("jacko", "zerog");
-            event.getRegistry().register(potion);
+            itemP = new PotionItem.Properties().group(customItemGroup)
+                    .maxStackSize(POTION_STACK_SIZE);
+            Item potionItem = new PotionItem(itemP);
+            potionItem.setRegistryName(zerog.getRegistryName());
+            event.getRegistry().register(potionItem);
 
-            itemP = new Item.Properties().group(customItemGroup)
+            itemP = new BlockItem.Properties().group(customItemGroup)
                     .maxStackSize(MAXIMUM_STACK_SIZE);
-            BlockItem redItem = new BlockItem(sigma, itemP);
-            unlockItem.setRegistryName(sigma.getRegistryName());
-            event.getRegistry().register(unlockItem);
+            BlockItem sigmaItem = new BlockItem(sigma, itemP);
+            sigmaItem.setRegistryName(sigma.getRegistryName());
+            event.getRegistry().register(sigmaItem);
         }
 
         @SubscribeEvent
@@ -251,6 +251,18 @@ public class Jacko {
             // you probably don't need a datafixer --> null should be fine
             tileEntityDataType.setRegistryName("delay_tile");
             event.getRegistry().register(tileEntityDataType);
+        }
+
+        @SubscribeEvent
+        public static void registerEffects(final RegistryEvent.Register<Effect> event) {
+
+        }
+
+        @SubscribeEvent
+        public static void registerPotions(final RegistryEvent.Register<Potion> event) {
+            zerog = new Potion();
+            zerog.setRegistryName("jacko", "zerog");
+            event.getRegistry().register(zerog);//might need registering
         }
     }
 }
