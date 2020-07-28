@@ -210,11 +210,12 @@ public class Jacko {
             final int MAXIMUM_STACK_SIZE = 64;
             final int POTION_STACK_SIZE = 1;
             final int BOOK_STACK_SIZE = 16;
-            //final int OPTIMAL_HOPPER_SORT_SIZE = 13;
+            final int OPTIMAL_HOPPER_SORT_SIZE = 13;
             // 1/13th of a stack for each of the four filter items
             // Hopper feedback delay = 2 items at max 5 items per second
             // needs 1/14th of a stack
-            final int OPTIMAL_HOPPER_SORT_SIZE = 14;
+            //final int OPTIMAL_HOPPER_SORT_SIZE = 14;
+            // if slow feed then fine at 1/13th
             final ItemGroup customItemGroup = new ItemGroup("jacko_item_group") {
                 @Override
                 public ItemStack createIcon() {
@@ -223,7 +224,7 @@ public class Jacko {
             };
 
             Item.Properties itemP = new BlockItem.Properties().group(customItemGroup)
-                    .maxStackSize(MAXIMUM_STACK_SIZE);
+                    .maxStackSize(OPTIMAL_HOPPER_SORT_SIZE);//for extra utility
             BlockItem unlockItem = new BlockItem(unlock, itemP);
             unlockItem.setRegistryName(unlock.getRegistryName());
             event.getRegistry().register(unlockItem);
