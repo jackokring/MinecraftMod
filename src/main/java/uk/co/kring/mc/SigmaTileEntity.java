@@ -4,7 +4,7 @@ import net.minecraft.nbt.CompoundNBT;
 
 import static uk.co.kring.mc.Holder.tileEntitySigma;
 
-public class SigmaTileEntity extends DelayTileEntity {
+public class SigmaTileEntity extends CalculationProviderTileEntity {
 
     public SigmaTileEntity() {
         super(tileEntitySigma);

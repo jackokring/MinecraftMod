@@ -9,7 +9,6 @@ import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
@@ -26,7 +25,6 @@ import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -202,7 +200,7 @@ public class Jacko {
             //see @ObjectHolder in uk.co.kring.mc.Blocks field import static
             event.getRegistry().register(unlock);
 
-            sigma = new Sigma();
+            sigma = new CalculationProviderRedstoneBlock();//needs TileEntity registering with same "name"
             sigma.setRegistryName("jacko", "sigma");
             event.getRegistry().register(sigma);
         }
@@ -250,7 +248,7 @@ public class Jacko {
                     .create(SigmaTileEntity::new, sigma).build(null);
             //technically type is null and used in constructor before assignment (pokey pointer variant generic?)
             // you probably don't need a datafixer --> null should be fine
-            tileEntitySigma.setRegistryName("te_sigma");
+            tileEntitySigma.setRegistryName(sigma.getRegistryName());
             event.getRegistry().register(tileEntitySigma);
         }
 

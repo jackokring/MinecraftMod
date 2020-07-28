@@ -10,11 +10,11 @@ import net.minecraft.tileentity.TileEntityType;
 
 import javax.annotation.Nullable;
 
-import static uk.co.kring.mc.Sigma.ON;
+import static uk.co.kring.mc.CalculationProviderRedstoneBlock.ON;
 
-public abstract class DelayTileEntity extends TileEntity implements ITickableTileEntity, CalculationProvider {
+public abstract class CalculationProviderTileEntity extends TileEntity implements ITickableTileEntity, CalculationProvider {
 
-    public DelayTileEntity(TileEntityType tet) {
+    public CalculationProviderTileEntity(TileEntityType tet) {
         //botch enforcement of defining default constructor
         super(tet);
     }

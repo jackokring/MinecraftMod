@@ -11,11 +11,9 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -25,19 +23,18 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraftforge.registries.RegistryManager;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 
 import static net.minecraft.util.Direction.*;
-import static uk.co.kring.mc.Holder.sigma;
 
-public class Sigma extends Block {
+public class CalculationProviderRedstoneBlock extends Block {
     final static DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
     final static BooleanProperty ON = BooleanProperty.create("on");
     final static BooleanProperty POWERED = BooleanProperty.create("powered");
 
-    public Sigma() {
+    public CalculationProviderRedstoneBlock() {
         super(Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement());
         BlockState defaultBlockState = stateContainer.getBaseState().with(FACING, Direction.NORTH)
                 .with(ON, false).with(POWERED, false);
@@ -54,9 +51,11 @@ public class Sigma extends Block {
     public TileEntity createTileEntity(BlockState state,
                                        IBlockReader world) {
         //TODO: behaviour alteration
-        ResourceLocation rl = getRegistryName();
+        //ResourceLocation rl = getRegistryName();
         //RegistryManager.ACTIVE.getRegistry(TileEntityType.class) ->
-        return new SigmaTileEntity();
+        return ForgeRegistries.TILE_ENTITIES.getValue(this.getRegistryName())
+            .create();
+        //return new SigmaTileEntity();
     }
 
     @Override
@@ -100,9 +99,9 @@ public class Sigma extends Block {
         // int powerLevel = world.getRedstonePowerFromNeighbors(pos);
         // if input can come from any side, use this line
         TileEntity d = world.getTileEntity(pos);
-        DelayTileEntity dd;
-        if (d instanceof DelayTileEntity) {
-            dd = (DelayTileEntity) d;
+        CalculationProviderTileEntity dd;
+        if (d instanceof CalculationProviderTileEntity) {
+            dd = (CalculationProviderTileEntity) d;
         } else return;
         BlockPos neighborPos = pos.offset(state.get(FACING).getOpposite());//main
         //int oldPower = dd.powerIn;
@@ -208,8 +207,8 @@ public class Sigma extends Block {
                               Direction directionFromNeighborToThis) {
         if (state.get(FACING) == directionFromNeighborToThis.getOpposite()) {
             TileEntity d = worldIn.getTileEntity(pos);
-            if (d instanceof DelayTileEntity) {
-                return ((DelayTileEntity) d).powerOut;//return delayed calculated power
+            if (d instanceof CalculationProviderTileEntity) {
+                return ((CalculationProviderTileEntity) d).powerOut;//return delayed calculated power
             } else return 0;
         }
         return 0;//else no power
