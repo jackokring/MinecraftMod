@@ -210,6 +210,7 @@ public class Jacko {
             final int MAXIMUM_STACK_SIZE = 64;
             final int POTION_STACK_SIZE = 1;
             final int BOOK_STACK_SIZE = 16;
+            final int OPTIMAL_HOPPER_SORT_SIZE = 13;// 1/13th of a stack for each of the four filter items
             final ItemGroup customItemGroup = new ItemGroup("jacko_item_group") {
                 @Override
                 public ItemStack createIcon() {
