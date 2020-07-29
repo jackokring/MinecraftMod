@@ -2,5 +2,8 @@
   "block.jacko.unlock": "Unlocka",
   "item.jacko.book": "Libra Codex",
   "item.jacko.zerog": "Zero G Potion",
-  "block.jacko.sigma": "Sigma"
+  "block.jacko.sigma": "Sigma",
+  "block.jacko.delta": "Delta",
+  "block.jacko.upsilon": "Upsilon",
+  "block.jacko.pi": "Pi"
 }

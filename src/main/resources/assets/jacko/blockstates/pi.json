@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north,on=false,powered=false": { "model": "jacko:pi"},
+    "facing=east,on=false,powered=false": { "model": "jacko:pi", "y": 90 },
+    "facing=south,on=false,powered=false": { "model": "jacko:pi", "y": 180 },
+    "facing=west,on=false,powered=false": { "model": "jacko:pi", "y": 270 },
+    "facing=north,on=true,powered=false": { "model": "jacko:pi_on"},
+    "facing=east,on=true,powered=false": { "model": "jacko:pi_on", "y": 90 },
+    "facing=south,on=true,powered=false": { "model": "jacko:pi_on", "y": 180 },
+    "facing=west,on=true,powered=false": { "model": "jacko:pi_on", "y": 270 },
+    "facing=north,on=false,powered=true": { "model": "jacko:pi_power"},
+    "facing=east,on=false,powered=true": { "model": "jacko:pi_power", "y": 90 },
+    "facing=south,on=false,powered=true": { "model": "jacko:pi_power", "y": 180 },
+    "facing=west,on=false,powered=true": { "model": "jacko:pi_power", "y": 270 },
+    "facing=north,on=true,powered=true": { "model": "jacko:pi_on_power"},
+    "facing=east,on=true,powered=true": { "model": "jacko:pi_on_power", "y": 90 },
+    "facing=south,on=true,powered=true": { "model": "jacko:pi_on_power", "y": 180 },
+    "facing=west,on=true,powered=true": { "model": "jacko:pi_on_power", "y": 270 }
+  }
+}

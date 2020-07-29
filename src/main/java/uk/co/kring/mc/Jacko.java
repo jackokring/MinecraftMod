@@ -30,9 +30,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 //IMC multiple IPC combine to list received values of sent evaluations of closure results
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 

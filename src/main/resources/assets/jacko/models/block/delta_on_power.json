@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "jacko:block/delta",
+    "all": "jacko:block/delta"
+  },
+  "elements": [
+    {
+      "from": [ 0, 0, 0 ],
+      "to": [ 16, 2, 16 ],
+      "faces": {
+        "down":  { "uv": [0,8, 8,16], "texture": "#all", "cullface": "down" },
+        "up":    { "uv": [0,8, 8,16], "texture": "#all", "cullface": "up" },
+        "north": { "uv": [8,14, 16,16], "texture": "#all", "cullface": "north" },
+        "south": { "uv": [8,14, 16,16], "texture": "#all", "cullface": "south" },
+        "west":  { "uv": [8,14, 16,16], "texture": "#all", "cullface": "west" },
+        "east":  { "uv": [8,14, 16,16], "texture": "#all", "cullface": "east" }
+      }
+    },
+    {
+      "from": [ 7, 2, 7 ],
+      "to": [ 9, 8, 9 ],
+      "faces": {
+        "up":    { "uv": [3,11, 5,13], "texture": "#all", "cullface": "up" },
+        "north": { "uv": [8,11, 10,14], "texture": "#all", "cullface": "north" },
+        "south": { "uv": [10,11, 12,14], "texture": "#all", "cullface": "south" },
+        "west":  { "uv": [12,11, 14,14], "texture": "#all", "cullface": "west" },
+        "east":  { "uv": [14,11, 16,14], "texture": "#all", "cullface": "east" }
+      }
+    }
+  ]
+}
