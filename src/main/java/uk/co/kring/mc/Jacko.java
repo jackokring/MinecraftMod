@@ -8,6 +8,7 @@ import net.minecraft.command.Commands;
 import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -29,6 +30,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 //IMC multiple IPC combine to list received values of sent evaluations of closure results
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 //command arguments
@@ -189,6 +194,13 @@ public class Jacko {
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
 
+        static Block regBlockCP(String name, RegistryEvent.Register<Block> event) {
+            Block b = new CalculationProviderRedstoneBlock();//needs TileEntity registering with same "name"
+            b.setRegistryName("jacko", name);
+            event.getRegistry().register(b);
+            return b;
+        }
+
         @SubscribeEvent
         public static void registerBlocks(RegistryEvent.Register<Block> event) {
             unlock = new Block(Block.Properties.create(Material.MISCELLANEOUS)
@@ -200,23 +212,35 @@ public class Jacko {
             //see @ObjectHolder in uk.co.kring.mc.Blocks field import static
             event.getRegistry().register(unlock);
 
-            sigma = new CalculationProviderRedstoneBlock();//needs TileEntity registering with same "name"
-            sigma.setRegistryName("jacko", "sigma");
-            event.getRegistry().register(sigma);
+            sigma = regBlockCP("sigma", event);
+            delta = regBlockCP("delta", event);
+            upsilon = regBlockCP("upsilon", event);
+            pi = regBlockCP("pi", event);
+        }
+
+        final static int MAXIMUM_STACK_SIZE = 64;
+        final static int POTION_STACK_SIZE = 1;
+        final static int BOOK_STACK_SIZE = 16;
+        final static int OPTIMAL_HOPPER_SORT_SIZE = 13;
+        // 1/13th of a stack for each of the four filter items
+        // Hopper feedback delay = 2 items at max 5 items per second
+        // needs 1/14th of a stack
+        //final int OPTIMAL_HOPPER_SORT_SIZE = 14;
+        // if slow feed then fine at 1/13th
+
+        static ItemGroup customItemGroup;
+
+        static void regItemCP(Block name, RegistryEvent.Register<Item> event) {
+            Item.Properties itemP = new BlockItem.Properties().group(customItemGroup)
+                    .maxStackSize(MAXIMUM_STACK_SIZE);
+            BlockItem item = new BlockItem(name, itemP);
+            item.setRegistryName(name.getRegistryName());
+            event.getRegistry().register(item);
         }
 
         @SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event) {
-            final int MAXIMUM_STACK_SIZE = 64;
-            final int POTION_STACK_SIZE = 1;
-            final int BOOK_STACK_SIZE = 16;
-            final int OPTIMAL_HOPPER_SORT_SIZE = 13;
-            // 1/13th of a stack for each of the four filter items
-            // Hopper feedback delay = 2 items at max 5 items per second
-            // needs 1/14th of a stack
-            //final int OPTIMAL_HOPPER_SORT_SIZE = 14;
-            // if slow feed then fine at 1/13th
-            final ItemGroup customItemGroup = new ItemGroup("jacko_item_group") {
+             customItemGroup = new ItemGroup("jacko_item_group") {
                 @Override
                 public ItemStack createIcon() {
                     return new ItemStack(Items.EMERALD);
@@ -241,21 +265,29 @@ public class Jacko {
             potionItem.setRegistryName(zerog.getRegistryName());
             event.getRegistry().register(potionItem);
 
-            itemP = new BlockItem.Properties().group(customItemGroup)
-                    .maxStackSize(MAXIMUM_STACK_SIZE);
-            BlockItem sigmaItem = new BlockItem(sigma, itemP);
-            sigmaItem.setRegistryName(sigma.getRegistryName());
-            event.getRegistry().register(sigmaItem);
+            regItemCP(sigma, event);
+            regItemCP(delta, event);
+            regItemCP(upsilon, event);
+            regItemCP(pi, event);
+        }
+
+        static TileEntityType regTileEntityCP(Block name, Supplier<TileEntity> tet,
+                                                 RegistryEvent.Register<TileEntityType<?>> event) {
+            TileEntityType te = TileEntityType.Builder
+                    .create(tet, name).build(null);
+            //technically type is null and used in constructor before assignment (pokey pointer variant generic?)
+            // you probably don't need a datafixer --> null should be fine
+            te.setRegistryName(name.getRegistryName());
+            event.getRegistry().register(te);
+            return te;
         }
 
         @SubscribeEvent
-        public static void registerTE(final RegistryEvent.Register<TileEntityType<?>> event) {
-            tileEntitySigma = TileEntityType.Builder
-                    .create(SigmaTileEntity::new, sigma).build(null);
-            //technically type is null and used in constructor before assignment (pokey pointer variant generic?)
-            // you probably don't need a datafixer --> null should be fine
-            tileEntitySigma.setRegistryName(sigma.getRegistryName());
-            event.getRegistry().register(tileEntitySigma);
+        public static void registerTileEntity(final RegistryEvent.Register<TileEntityType<?>> event) {
+            tileEntitySigma = regTileEntityCP(sigma, SigmaTileEntity::new, event);
+            tileEntityDelta = regTileEntityCP(delta, DeltaTileEntity::new, event);
+            tileEntityUpsilon = regTileEntityCP(upsilon, UpsilonTileEntity::new, event);
+            tileEntityPi = regTileEntityCP(pi, PiTileEntity::new, event);
         }
 
         @SubscribeEvent

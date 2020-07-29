@@ -8,6 +8,9 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(value="jacko")
 public class Holder {
     public static TileEntityType<SigmaTileEntity> tileEntitySigma;
+    public static TileEntityType<DeltaTileEntity> tileEntityDelta;
+    public static TileEntityType<UpsilonTileEntity> tileEntityUpsilon;
+    public static TileEntityType<PiTileEntity> tileEntityPi;
 
     //version 1.0
     public static Block unlock;
