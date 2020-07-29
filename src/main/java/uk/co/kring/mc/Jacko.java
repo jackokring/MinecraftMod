@@ -228,8 +228,8 @@ public class Jacko {
         static ItemGroup customItemGroup;
 
         static void regItemCP(Block name, RegistryEvent.Register<Item> event) {
-            Item.Properties itemP = new BlockItem.Properties().group(customItemGroup)
-                    .maxStackSize(MAXIMUM_STACK_SIZE);
+            Item.Properties itemP = new BlockItem.Properties().group(customItemGroup);
+                    //.maxStackSize(MAXIMUM_STACK_SIZE);
             BlockItem item = new BlockItem(name, itemP);
             item.setRegistryName(name.getRegistryName());
             event.getRegistry().register(item);
@@ -250,14 +250,14 @@ public class Jacko {
             unlockItem.setRegistryName(unlock.getRegistryName());
             event.getRegistry().register(unlockItem);
 
-            itemP = new BookItem.Properties().group(customItemGroup)
-                    .maxStackSize(BOOK_STACK_SIZE);
+            itemP = new BookItem.Properties().group(customItemGroup);
+                    //.maxStackSize(BOOK_STACK_SIZE);
             Item bookItem = new Item(itemP);
             bookItem.setRegistryName("jacko", "book");
             event.getRegistry().register(bookItem);
 
-            itemP = new PotionItem.Properties().group(customItemGroup)
-                    .maxStackSize(POTION_STACK_SIZE);
+            itemP = new PotionItem.Properties().group(customItemGroup);
+                    //.maxStackSize(POTION_STACK_SIZE);
             Item potionItem = new PotionItem(itemP);
             potionItem.setRegistryName(zerog.getRegistryName());
             event.getRegistry().register(potionItem);
