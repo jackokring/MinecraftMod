@@ -60,7 +60,7 @@ public class CalculationProviderRedstoneBlock extends Block {
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING, ON);
+        builder.add(FACING, ON, POWERED);
     }
 
     @Override

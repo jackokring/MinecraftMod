@@ -260,7 +260,7 @@ public class Jacko {
             itemP = new PotionItem.Properties().group(customItemGroup);
                     //.maxStackSize(POTION_STACK_SIZE);
             Item potionItem = new PotionItem(itemP);
-            potionItem.setRegistryName(zerog.getRegistryName());
+            potionItem.setRegistryName(Jacko.MOD_ID, "zerog");
             event.getRegistry().register(potionItem);
 
             regBlockItemCP(sigma, event);
