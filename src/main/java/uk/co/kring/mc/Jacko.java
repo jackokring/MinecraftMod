@@ -40,10 +40,11 @@ import static com.mojang.brigadier.arguments.IntegerArgumentType.*;
 import static uk.co.kring.mc.Holder.*;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod("jacko")
+@Mod(Jacko.MOD_ID)
 public class Jacko {
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
+    public static final String MOD_ID = "jacko";
 
     public Jacko() {
         // Register the setup method for modloading
@@ -74,7 +75,7 @@ public class Jacko {
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("jacko", "hello_world",
+        InterModComms.sendTo(Jacko.MOD_ID, "hello_world",
                 () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
         //binding element manufacture to supply
     }
@@ -193,7 +194,7 @@ public class Jacko {
 
         static Block regBlockCP(String name, RegistryEvent.Register<Block> event) {
             Block b = new CalculationProviderRedstoneBlock();//needs TileEntity registering with same "name"
-            b.setRegistryName("jacko", name);
+            b.setRegistryName(Jacko.MOD_ID, name);
             event.getRegistry().register(b);
             return b;
         }
@@ -205,7 +206,7 @@ public class Jacko {
                     .sound(SoundType.SCAFFOLDING)
                     //.slipperiness(0.5f)
             );
-            unlock.setRegistryName("jacko", "unlock");
+            unlock.setRegistryName(Jacko.MOD_ID, "unlock");
             //see @ObjectHolder in uk.co.kring.mc.Blocks field import static
             event.getRegistry().register(unlock);
 
@@ -227,7 +228,7 @@ public class Jacko {
 
         static ItemGroup customItemGroup;
 
-        static void regItemCP(Block name, RegistryEvent.Register<Item> event) {
+        static void regBlockItemCP(Block name, RegistryEvent.Register<Item> event) {
             Item.Properties itemP = new BlockItem.Properties().group(customItemGroup);
                     //.maxStackSize(MAXIMUM_STACK_SIZE);
             BlockItem item = new BlockItem(name, itemP);
@@ -253,7 +254,7 @@ public class Jacko {
             itemP = new BookItem.Properties().group(customItemGroup);
                     //.maxStackSize(BOOK_STACK_SIZE);
             Item bookItem = new Item(itemP);
-            bookItem.setRegistryName("jacko", "book");
+            bookItem.setRegistryName(Jacko.MOD_ID, "book");
             event.getRegistry().register(bookItem);
 
             itemP = new PotionItem.Properties().group(customItemGroup);
@@ -262,10 +263,10 @@ public class Jacko {
             potionItem.setRegistryName(zerog.getRegistryName());
             event.getRegistry().register(potionItem);
 
-            regItemCP(sigma, event);
-            regItemCP(delta, event);
-            regItemCP(upsilon, event);
-            regItemCP(pi, event);
+            regBlockItemCP(sigma, event);
+            regBlockItemCP(delta, event);
+            regBlockItemCP(upsilon, event);
+            regBlockItemCP(pi, event);
         }
 
         static TileEntityType regTileEntityCP(Block name, Supplier<TileEntity> tet,
@@ -295,7 +296,7 @@ public class Jacko {
         @SubscribeEvent
         public static void registerPotions(final RegistryEvent.Register<Potion> event) {
             zerog = new Potion();
-            zerog.setRegistryName("jacko", "zerog");
+            zerog.setRegistryName(Jacko.MOD_ID, "zerog");
             event.getRegistry().register(zerog);//might need registering
         }
     }
