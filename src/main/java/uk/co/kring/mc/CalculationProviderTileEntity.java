@@ -2,13 +2,9 @@ package uk.co.kring.mc;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
-
-import javax.annotation.Nullable;
 
 import static uk.co.kring.mc.CalculationProviderRedstoneBlock.ON;
 
@@ -39,10 +35,23 @@ public abstract class CalculationProviderTileEntity extends TileEntity implement
         return tag;
     }
 
+    //LOAD
+    @Override
+    public void read(BlockState bs, CompoundNBT tag) {
+        super.read(bs, tag);
+        //client side process
+        powerOut = tag.getInt("out");
+        peekNBT(tag);
+        //final int FLAGS = SetBlockStateFlag.get(SetBlockStateFlag.BLOCK_UPDATE, SetBlockStateFlag.SEND_TO_CLIENTS);
+        //world.setBlockState(pos, getBlockState().with(ON, powerOut != 0), FLAGS);
+        //updateNeedleFromPowerLevel();
+    }
+
+    /*
     //SEND
     @Override
     public CompoundNBT getUpdateTag()  {
-        CompoundNBT tag = new CompoundNBT();//blank
+        CompoundNBT tag = super.getUpdateTag();//blank
         tag = write(tag);//extra use functionality, as does not save, just makes net packet
         //server side fill in non saved?
         return tag;//filled in complete
@@ -61,18 +70,13 @@ public abstract class CalculationProviderTileEntity extends TileEntity implement
     public void handleUpdateTag(BlockState bs, CompoundNBT tag) {
         //there is assumption this is called when loading phase happens to load server via updates?
         super.handleUpdateTag(bs, tag);//some docs say this does the readNBT
-        //client side process
-        powerOut = tag.getInt("out");
-        peekNBT(tag);
-        //final int FLAGS = SetBlockStateFlag.get(SetBlockStateFlag.BLOCK_UPDATE, SetBlockStateFlag.SEND_TO_CLIENTS);
-        //world.setBlockState(pos, getBlockState().with(ON, powerOut != 0), FLAGS);
-        //updateNeedleFromPowerLevel();
+        read(bs, tag);
     }
 
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         handleUpdateTag(getBlockState(), pkt.getNbtCompound());//pass down
-    }
+    } */
 
     //============================================================================
     // TICK INTERFACE
