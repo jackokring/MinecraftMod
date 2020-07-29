@@ -10,7 +10,7 @@
   ],
   "CustomPotionColor": 65280,
   "display": {
-    "Name": "Zero G",
-    "Lore": ["Out of this world."]
+    "Name": { "translate": "item.jacko.zerog" },
+    "Lore": [ { "translate" : "item.jacko.zerog.lore" } ]
   }
 }

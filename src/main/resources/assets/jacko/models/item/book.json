@@ -113,12 +113,12 @@
       ],
       [
           { "text": "Not Quite the End.", "bold": true },
-          { "text": "\n\nThis book is dedicated to the dedicated.\n\nThere maybe later notes." },
-          { "text": "\n\n -- Jacko", "color": "dark_aqua" }
+          { "text": "\n\nThis book is dedicated to the dedicated.\n\nThere maybe later notes.\n\n" },
+          { "selector": "@p", "color": "dark_aqua" }
       ]
   ],
   "title": "Libra Codex",
   "author": "Jacko",
   "generation": 0,
-  "resolved": 1
+  "lore": [ { "translate": "item.jacko.book.lore" } ]
 }
