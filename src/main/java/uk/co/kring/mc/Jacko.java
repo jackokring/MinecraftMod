@@ -108,7 +108,7 @@ public class Jacko {
         fromMod("onServerStarting()");
         event.getServer().getCommandManager().getDispatcher().register(
                 Commands.literal(Jacko.MOD_ID)
-                        .requires(source -> source.hasPermissionLevel(4))
+                        .requires(source -> source.hasPermissionLevel(1)) // can be up to 4 (1 => low pri)
                         /* .then(
                                 Commands.argument("foo_bar", integer())
                                         .executes(context -> {
@@ -117,7 +117,7 @@ public class Jacko {
                                         })
                         ) */
                         .executes(context -> {
-                            System.out.println("Hi, mod Jacko is loaded.");
+                            System.out.println("Hi, mod " + Jacko.MOD_ID + " is loaded.");
                             return 1;
                         })
         );
