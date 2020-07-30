@@ -192,28 +192,28 @@ public class Jacko {
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
 
-        static Block regBlockCP(String name, RegistryEvent.Register<Block> event) {
+        public static void regBlockCP(String name, RegistryEvent.Register<Block> event) {
             Block b = new CalculationProviderRedstoneBlock();//needs TileEntity registering with same "name"
             b.setRegistryName(Jacko.MOD_ID, name);
             event.getRegistry().register(b);
-            return b;
+            //return b;//via ObjectHolder
         }
 
         @SubscribeEvent
         public static void registerBlocks(RegistryEvent.Register<Block> event) {
-            unlock = new Block(Block.Properties.create(Material.MISCELLANEOUS)
+            Block u = new Block(Block.Properties.create(Material.MISCELLANEOUS)
                     //.hardnessAndResistance(3f, 3f) //emerald level
                     .sound(SoundType.SCAFFOLDING)
                     //.slipperiness(0.5f)
             );
-            unlock.setRegistryName(Jacko.MOD_ID, "unlock");
+            u.setRegistryName(Jacko.MOD_ID, "unlock");
             //see @ObjectHolder in uk.co.kring.mc.Blocks field import static
-            event.getRegistry().register(unlock);
+            event.getRegistry().register(u);
 
-            sigma = regBlockCP("sigma", event);
-            delta = regBlockCP("delta", event);
-            upsilon = regBlockCP("upsilon", event);
-            pi = regBlockCP("pi", event);
+            regBlockCP("sigma", event);
+            regBlockCP("delta", event);
+            regBlockCP("upsilon", event);
+            regBlockCP("pi", event);
         }
 
         final static int MAXIMUM_STACK_SIZE = 64;
@@ -269,7 +269,7 @@ public class Jacko {
             regBlockItemCP(pi, event);
         }
 
-        static TileEntityType regTileEntityCP(Block name, Supplier<TileEntity> tet,
+        public static TileEntityType regTileEntityCP(Block name, Supplier<TileEntity> tet,
                                                  RegistryEvent.Register<TileEntityType<?>> event) {
             TileEntityType te = TileEntityType.Builder
                     .create(tet, name).build(null);
