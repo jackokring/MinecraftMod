@@ -1,0 +1,15 @@
+{
+  "Potion":"minecraft:water",
+  "CustomPotionEffects": [
+    { "Id": 28,
+      "Duration": 18000,
+      "ShowParticles" : false,
+      "ShowIcon": true
+    }
+  ],
+  "CustomPotionColor": 65280,
+  "display": {
+    "Name": { "translate": "item.jacko.zerog" },
+    "Lore": [ { "translate" : "item.jacko.zerog.lore" } ]
+  }
+}
