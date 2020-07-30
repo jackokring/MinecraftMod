@@ -28,17 +28,20 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import uk.co.kring.mc.calculationprovider.CalculationProviderRedstoneBlock;
+import uk.co.kring.mc.tileentities.DeltaTileEntity;
+import uk.co.kring.mc.tileentities.PiTileEntity;
+import uk.co.kring.mc.tileentities.SigmaTileEntity;
+import uk.co.kring.mc.tileentities.UpsilonTileEntity;
 
 //IMC multiple IPC combine to list received values of sent evaluations of closure results
-import java.text.StringCharacterIterator;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 //command arguments
-import static com.mojang.brigadier.arguments.IntegerArgumentType.*;
 
 //ObjectHolder
-import static uk.co.kring.mc.Holder.*;
+import static uk.co.kring.mc.JackoObjectHolder.*;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Jacko.MOD_ID)

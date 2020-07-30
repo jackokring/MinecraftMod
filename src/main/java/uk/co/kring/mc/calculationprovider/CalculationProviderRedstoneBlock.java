@@ -1,4 +1,4 @@
-package uk.co.kring.mc;
+package uk.co.kring.mc.calculationprovider;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -24,6 +24,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
+import uk.co.kring.mc.utils.SetBlockStateFlag;
 
 import javax.annotation.Nullable;
 

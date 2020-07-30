@@ -1,4 +1,4 @@
-package uk.co.kring.mc;
+package uk.co.kring.mc.utils;
 
 /**
  * Created by TGG on 6/04/2020.

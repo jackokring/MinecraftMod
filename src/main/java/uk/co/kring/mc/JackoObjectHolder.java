@@ -4,9 +4,13 @@ import net.minecraft.block.Block;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
+import uk.co.kring.mc.tileentities.DeltaTileEntity;
+import uk.co.kring.mc.tileentities.PiTileEntity;
+import uk.co.kring.mc.tileentities.SigmaTileEntity;
+import uk.co.kring.mc.tileentities.UpsilonTileEntity;
 
 @ObjectHolder(value="jacko")
-public class Holder {
+public class JackoObjectHolder {
     //version 1.0
     //hold references for use internal
     public static Potion zerog;

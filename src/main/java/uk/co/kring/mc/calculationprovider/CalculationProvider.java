@@ -1,4 +1,4 @@
-package uk.co.kring.mc;
+package uk.co.kring.mc.calculationprovider;
 
 import net.minecraft.nbt.CompoundNBT;
 

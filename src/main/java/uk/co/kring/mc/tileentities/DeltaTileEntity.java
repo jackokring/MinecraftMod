@@ -1,13 +1,14 @@
-package uk.co.kring.mc;
+package uk.co.kring.mc.tileentities;
 
 import net.minecraft.nbt.CompoundNBT;
+import uk.co.kring.mc.calculationprovider.CalculationProviderTileEntity;
 
-import static uk.co.kring.mc.Holder.tileEntitySigma;
+import static uk.co.kring.mc.JackoObjectHolder.tileEntityDelta;
 
-public class SigmaTileEntity extends CalculationProviderTileEntity {
+public class DeltaTileEntity extends CalculationProviderTileEntity {
 
-    public SigmaTileEntity() {
-        super(tileEntitySigma);
+    public DeltaTileEntity() {
+        super(tileEntityDelta);
     }
 
     //============================================================================

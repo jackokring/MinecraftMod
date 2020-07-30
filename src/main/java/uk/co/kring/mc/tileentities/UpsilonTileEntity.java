@@ -1,13 +1,14 @@
-package uk.co.kring.mc;
+package uk.co.kring.mc.tileentities;
 
 import net.minecraft.nbt.CompoundNBT;
+import uk.co.kring.mc.calculationprovider.CalculationProviderTileEntity;
 
-import static uk.co.kring.mc.Holder.tileEntityPi;
+import static uk.co.kring.mc.JackoObjectHolder.tileEntityUpsilon;
 
-public class PiTileEntity extends CalculationProviderTileEntity {
+public class UpsilonTileEntity extends CalculationProviderTileEntity {
 
-    public PiTileEntity() {
-        super(tileEntityPi);
+    public UpsilonTileEntity() {
+        super(tileEntityUpsilon);
     }
 
     //============================================================================

@@ -1,12 +1,13 @@
-package uk.co.kring.mc;
+package uk.co.kring.mc.calculationprovider;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import uk.co.kring.mc.utils.SetBlockStateFlag;
 
-import static uk.co.kring.mc.CalculationProviderRedstoneBlock.ON;
+import static uk.co.kring.mc.calculationprovider.CalculationProviderRedstoneBlock.ON;
 
 public abstract class CalculationProviderTileEntity extends TileEntity implements ITickableTileEntity, CalculationProvider {
 
