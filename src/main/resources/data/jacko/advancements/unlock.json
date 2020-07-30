@@ -1,7 +1,6 @@
 {
   "parent": "minecraft:recipes/root",
   "requirements": [
-    [
       [ "has_item_unlock" ],
 
       [ "has_the_recipe_unlock" ],
@@ -23,7 +22,6 @@
       [ "has_the_recipe_obsidian" ],
       [ "has_the_recipe_fall" ],
       [ "has_the_recipe_lime" ]
-    ]
   ],
   "criteria": {
     "has_item_unlock": {

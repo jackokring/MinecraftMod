@@ -264,9 +264,9 @@ public class Jacko {
             unlockItem.setRegistryName(unlock.getRegistryName());
             event.getRegistry().register(unlockItem);
 
-            itemP = new BookItem.Properties().group(customItemGroup);
+            itemP = new WrittenBookItem.Properties().group(customItemGroup);
                     //.maxStackSize(BOOK_STACK_SIZE);
-            Item bookItem = new Item(itemP);
+            Item bookItem = new WritableBookItem(itemP);
             bookItem.setRegistryName(Jacko.MOD_ID, "book");
             event.getRegistry().register(bookItem);
 
