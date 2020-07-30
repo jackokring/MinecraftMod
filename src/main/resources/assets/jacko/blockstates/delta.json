@@ -1,20 +1,20 @@
 {
   "variants": {
-    "facing=north,on=false,powered=false": { "model": "jacko:block/delta"},
-    "facing=east,on=false,powered=false": { "model": "jacko:block/delta", "y": 90 },
-    "facing=south,on=false,powered=false": { "model": "jacko:block/delta", "y": 180 },
-    "facing=west,on=false,powered=false": { "model": "jacko:block/delta", "y": 270 },
-    "facing=north,on=true,powered=false": { "model": "jacko:block/delta_on"},
-    "facing=east,on=true,powered=false": { "model": "jacko:block/delta_on", "y": 90 },
-    "facing=south,on=true,powered=false": { "model": "jacko:block/delta_on", "y": 180 },
-    "facing=west,on=true,powered=false": { "model": "jacko:block/delta_on", "y": 270 },
-    "facing=north,on=false,powered=true": { "model": "jacko:block/delta_power"},
-    "facing=east,on=false,powered=true": { "model": "jacko:block/delta_power", "y": 90 },
-    "facing=south,on=false,powered=true": { "model": "jacko:block/delta_power", "y": 180 },
-    "facing=west,on=false,powered=true": { "model": "jacko:block/delta_power", "y": 270 },
-    "facing=north,on=true,powered=true": { "model": "jacko:block/delta_on_power"},
-    "facing=east,on=true,powered=true": { "model": "jacko:block/delta_on_power", "y": 90 },
-    "facing=south,on=true,powered=true": { "model": "jacko:block/delta_on_power", "y": 180 },
-    "facing=west,on=true,powered=true": { "model": "jacko:block/delta_on_power", "y": 270 }
+    "facing=north,on=false,powered=false": { "model": "jacko:block/off/unpowered/delta"},
+    "facing=east,on=false,powered=false": { "model": "jacko:block/off/unpowered/delta", "y": 90 },
+    "facing=south,on=false,powered=false": { "model": "jacko:block/off/unpowered/delta", "y": 180 },
+    "facing=west,on=false,powered=false": { "model": "jacko:block/off/unpowered/delta", "y": 270 },
+    "facing=north,on=true,powered=false": { "model": "jacko:block/on/unpowered/delta"},
+    "facing=east,on=true,powered=false": { "model": "jacko:block/on/unpowered/delta", "y": 90 },
+    "facing=south,on=true,powered=false": { "model": "jacko:block/on/unpowered/delta", "y": 180 },
+    "facing=west,on=true,powered=false": { "model": "jacko:block/on/unpowered/delta", "y": 270 },
+    "facing=north,on=false,powered=true": { "model": "jacko:block/off/powered/delta"},
+    "facing=east,on=false,powered=true": { "model": "jacko:block/off/powered/delta", "y": 90 },
+    "facing=south,on=false,powered=true": { "model": "jacko:block/off/powered/delta", "y": 180 },
+    "facing=west,on=false,powered=true": { "model": "jacko:block/off/powered/delta", "y": 270 },
+    "facing=north,on=true,powered=true": { "model": "jacko:block/on/powered/delta"},
+    "facing=east,on=true,powered=true": { "model": "jacko:block/on/powered/delta", "y": 90 },
+    "facing=south,on=true,powered=true": { "model": "jacko:block/on/powered/delta", "y": 180 },
+    "facing=west,on=true,powered=true": { "model": "jacko:block/on/powered/delta", "y": 270 }
   }
 }

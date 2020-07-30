@@ -1,20 +1,20 @@
 {
   "variants": {
-    "facing=north,on=false,powered=false": { "model": "jacko:block/pi"},
-    "facing=east,on=false,powered=false": { "model": "jacko:block/pi", "y": 90 },
-    "facing=south,on=false,powered=false": { "model": "jacko:block/pi", "y": 180 },
-    "facing=west,on=false,powered=false": { "model": "jacko:block/pi", "y": 270 },
-    "facing=north,on=true,powered=false": { "model": "jacko:block/pi_on"},
-    "facing=east,on=true,powered=false": { "model": "jacko:block/pi_on", "y": 90 },
-    "facing=south,on=true,powered=false": { "model": "jacko:block/pi_on", "y": 180 },
-    "facing=west,on=true,powered=false": { "model": "jacko:block/pi_on", "y": 270 },
-    "facing=north,on=false,powered=true": { "model": "jacko:block/pi_power"},
-    "facing=east,on=false,powered=true": { "model": "jacko:block/pi_power", "y": 90 },
-    "facing=south,on=false,powered=true": { "model": "jacko:block/pi_power", "y": 180 },
-    "facing=west,on=false,powered=true": { "model": "jacko:block/pi_power", "y": 270 },
-    "facing=north,on=true,powered=true": { "model": "jacko:block/pi_on_power"},
-    "facing=east,on=true,powered=true": { "model": "jacko:block/pi_on_power", "y": 90 },
-    "facing=south,on=true,powered=true": { "model": "jacko:block/pi_on_power", "y": 180 },
-    "facing=west,on=true,powered=true": { "model": "jacko:block/pi_on_power", "y": 270 }
+    "facing=north,on=false,powered=false": { "model": "jacko:block/off/unpowered/pi"},
+    "facing=east,on=false,powered=false": { "model": "jacko:block/off/unpowered/pi", "y": 90 },
+    "facing=south,on=false,powered=false": { "model": "jacko:block/off/unpowered/pi", "y": 180 },
+    "facing=west,on=false,powered=false": { "model": "jacko:block/off/unpowered/pi", "y": 270 },
+    "facing=north,on=true,powered=false": { "model": "jacko:block/on/unpowered/pi"},
+    "facing=east,on=true,powered=false": { "model": "jacko:block/on/unpowered/pi", "y": 90 },
+    "facing=south,on=true,powered=false": { "model": "jacko:block/on/unpowered/pi", "y": 180 },
+    "facing=west,on=true,powered=false": { "model": "jacko:block/on/unpowered/pi", "y": 270 },
+    "facing=north,on=false,powered=true": { "model": "jacko:block/off/powered/pi"},
+    "facing=east,on=false,powered=true": { "model": "jacko:block/off/powered/pi", "y": 90 },
+    "facing=south,on=false,powered=true": { "model": "jacko:block/off/powered/pi", "y": 180 },
+    "facing=west,on=false,powered=true": { "model": "jacko:block/off/powered/pi", "y": 270 },
+    "facing=north,on=true,powered=true": { "model": "jacko:block/on/powered/pi"},
+    "facing=east,on=true,powered=true": { "model": "jacko:block/on/powered/pi", "y": 90 },
+    "facing=south,on=true,powered=true": { "model": "jacko:block/on/powered/pi", "y": 180 },
+    "facing=west,on=true,powered=true": { "model": "jacko:block/on/powered/pi", "y": 270 }
   }
 }
