@@ -14,7 +14,7 @@ issueTrackerURL="https://github.com/jackokring/MinecraftMod/issues" #optional
 # The modid of the mod
 modId="jacko" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-version="1.0" #mandatory
+version="1.0.0" #mandatory
  # A display name for the mod
 displayName="Jacko's Mod" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
@@ -27,6 +27,8 @@ logoFile="jacko.png" #optional
 credits="Thanks to the Forge." #optional
 # A text field displayed in the mod UI
 authors="Simon Jackson, K Ring Technologies Ltd." #optional
+# Maybe works
+licence="LGPL"
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 An experiment into a future world.

@@ -1,3 +1,0 @@
-[16:51:32] [Forge Version Check/INFO] [ne.mi.fm.VersionChecker/]: [forge] Found status: BETA_OUTDATED Current: 32.0.66 Target: 32.0.98
-[16:51:39] [Worker-Main-6/WARN] [minecraft/ModelBakery]: Unable to load model: 'minecraft:items/written_book' referenced from: jacko:book#inventory: java.io.FileNotFoundException: minecraft:models/items/written_book.json
-[16:51:40] [Worker-Main-6/WARN] [minecraft/ModelBakery]: Unable to resolve texture reference: #missingno in jacko:item/book

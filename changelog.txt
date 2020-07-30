@@ -1,3 +1,179 @@
+Build: 1.16.1-32.0.98 - Thu Jul 30 03:18:00 GMT 2020
+	tterrag:
+		Implement forge IBakedModel methods in vanilla wrapper models
+
+=========
+Build: 1.16.1-32.0.97 - Tue Jul 28 23:44:41 GMT 2020
+	lex:
+		Fix another case of swallowed errors not shutting down mods.
+
+=========
+Build: 1.16.1-32.0.96 - Tue Jul 28 21:40:06 GMT 2020
+	lex:
+		Shut down all other mod handlers if the loading cycle errors.
+		This prevents other mods from throwing errors and being blamed for initial cause.
+		This is a temporary hack until cpw re-writes the mod event dispatcher.
+
+=========
+Build:  - Tue Jul 28 19:01:27 GMT 2020
+	lex:
+		Properly shutdown FMLModContainer's event bus when an error in a lifecycle event is detected.
+
+	lex:
+		Enable EventBus type check during ForgeDev, and add IModBusEvent marker to ModelRegistryEvent.
+
+=========
+Build: 1.16.1-32.0.93 - Tue Jul 28 07:16:31 GMT 2020
+	lex:
+		Make license toml entry optional during 1.16.1
+		There are to many existing mods to make this required.
+		Yes, we are technically before a RB and can do breaking changes. However this is too large.
+
+=========
+Build: 1.16.1-32.0.92 - Tue Jul 28 01:14:20 GMT 2020
+	cpw:
+		Missed one event. NewRegistry needs the marker.
+		
+		Signed-off-by: cpw <cpw+github@weeksfamily.ca>
+
+=========
+Build: 1.16.1-32.0.91 - Tue Jul 28 01:07:03 GMT 2020
+	cpw:
+		Update MDK license to default to All rights reserved, and offer a link to chooseyourlicense.com as a place to research appropriate licenses.
+		
+		Note: the license field _is_ backwards compatible and will simply be ignored on older forge versions.
+		Signed-off-by: cpw <cpw+github@weeksfamily.ca>
+
+=========
+Build: 1.16.1-32.0.90 - Tue Jul 28 00:47:35 GMT 2020
+	cpw:
+		Update modlauncher, eventbus, accesstransformers and more to use a newer mechanism for generating ASM.
+		
+		Introduced IModBusEvent as a marker interface for events on the ModBus. Expect exceptions if you use
+		the modbus for events not listened there.
+		
+		Signed-off-by: cpw <cpw+github@weeksfamily.ca>
+
+	cpw:
+		Update coremods and spi, include mandatory license field in metadata. Added at top level of mods.toml file.
+		
+		Signed-off-by: cpw <cpw+github@weeksfamily.ca>
+
+=========
+Build: 1.16.1-32.0.88 - Mon Jul 27 23:35:24 GMT 2020
+	ray.neiheiser:
+		Fix rail 180 rotations (#7177)
+
+	jmansfield:
+		Fire AnimalTameEvent for cats (#7172) Closes #7171
+
+=========
+Build: 1.16.1-32.0.86 - Mon Jul 27 22:56:16 GMT 2020
+	lex:
+		Fix Biome generation error.
+
+=========
+Build: 1.16.1-32.0.85 - Mon Jul 27 21:36:07 GMT 2020
+	dev:
+		Fix SleepingTimeCheckEvent not being fired in initial sleep test. (#7005)
+
+=========
+Build: 1.16.1-32.0.84 - Mon Jul 27 21:30:24 GMT 2020
+	Yunus1903:
+		Fix ClimberPathNavigator spinning when width is small. Closes #6993 (#6997)
+
+=========
+Build: 1.16.1-32.0.83 - Mon Jul 27 21:19:50 GMT 2020
+	mrtschipp:
+		Re-added PlayerEvent.NameFormat (#6992)
+
+=========
+Build: 1.16.1-32.0.82 - Mon Jul 27 21:14:02 GMT 2020
+	email.squishling:
+		Fixed modded overworld biomes not spawning [1.16.x] (#6990)
+
+=========
+Build: 1.16.1-32.0.81 - Mon Jul 27 21:08:23 GMT 2020
+	christ.klinge:
+		Added EntityLeaveWorldEvent (#6984)
+
+=========
+Build: 1.16.1-32.0.80 - Mon Jul 27 21:02:53 GMT 2020
+	aqscode:
+		Re-implement moddable flammabilities (#6983)
+
+=========
+Build: 1.16.1-32.0.79 - Mon Jul 27 20:46:11 GMT 2020
+	diesieben07:
+		Re-add patch for PlayerSetSpawnEvent (#6977)
+
+	Yunus1903:
+		Updated versions in README and removed flocker.tv mentions (#6978)
+
+=========
+Build: 1.16.1-32.0.77 - Mon Jul 27 20:40:33 GMT 2020
+	arnoldnunag12:
+		Fix ChunkDataEvents using different data tags (#6961) Fixes #6957
+
+=========
+Build:  - Mon Jul 27 20:27:00 GMT 2020
+	joetarbit:
+		Post SoundLoadEvent on mod bus instead of forge bus (#6955)
+
+=========
+Build: 1.16.1-32.0.75 - Wed Jul 22 01:26:19 GMT 2020
+	cpw:
+		Remove startupquery. Currently wasn't functional, and 1.16 has out of band state loading in all cases, so the complex functionality there is no longer needed. Going to research using the Lifecycle indicator from DFU as a proxy/replacement. Probably with some codec FUN.
+		
+		Signed-off-by: cpw <cpw+github@weeksfamily.ca>
+
+=========
+Build: 1.16.1-32.0.74 - Wed Jul 22 00:34:43 GMT 2020
+	lex:
+		Run Forge's data generators to sync 1.16 vanilla changes.
+
+=========
+Build: 1.16.1-32.0.73 - Wed Jul 22 00:13:48 GMT 2020
+	cpw:
+		Don't show the early launcher GUI when running data. It's not needed and prevents use on automated builds.
+		
+		Need to investigate why a bunch of tags seem to be being blown away by rerunning on forge.
+		
+		Signed-off-by: cpw <cpw+github@weeksfamily.ca>
+
+=========
+Build: 1.16.1-32.0.72 - Tue Jul 21 23:56:54 GMT 2020
+	cpw:
+		Add mixin
+		
+		Signed-off-by: cpw <cpw+github@weeksfamily.ca>
+
+=========
+Build: 1.16.1-32.0.71 - Mon Jul 20 22:56:31 GMT 2020
+	cyborgmas18:
+		Load Modded Datapacks in DatapackScreen, before world creation (#6913)
+
+=========
+Build: 1.16.1-32.0.70 - Sat Jul 18 22:35:53 GMT 2020
+	tterrag:
+		Fix inconsistencies with model/blockstate datagen
+
+=========
+Build: 1.16.1-32.0.69 - Fri Jul 17 17:35:47 GMT 2020
+	dev:
+		Filter duplicate mod files from mod file scan data (#6855)
+
+=========
+Build: 1.16.1-32.0.68 - Thu Jul 16 21:56:30 GMT 2020
+	lex:
+		Fixed Forge commands. Closes #6973 Closes #6974 Closes #6976
+
+=========
+Build: 1.16.1-32.0.67 - Wed Jul 15 19:30:53 GMT 2020
+	jaredlll08:
+		Added an event for registering commands. closes #6968 (#6969)
+
+=========
 Build: 1.16.1-32.0.66 - Tue Jul 14 00:15:41 GMT 2020
 	darklime:
 		Make all functions in Style common. (#6931)
