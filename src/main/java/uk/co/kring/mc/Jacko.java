@@ -5,11 +5,16 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.pattern.BlockMatcher;
 import net.minecraft.command.Commands;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
@@ -269,13 +274,25 @@ public class Jacko {
 
             itemP = new WrittenBookItem.Properties().group(customItemGroup);
                     //.maxStackSize(BOOK_STACK_SIZE);
-            WrittenBookItem bookItem = new WrittenBookItem(itemP);
-            //the following 2 look like a read and write function pair
-            //bookItem.readShareTag();
-            //bookItem.getShareTag();
-            //perhaps it's bool false and a place where tags are for following 2 methods ...
-            //bookItem.shouldSyncTag();
-            //bookItem.getTags();
+            WrittenBookItem bookItem = new WrittenBookItem(itemP) {
+                /* public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+                    ItemStack stack = playerIn.getHeldItem(handIn);
+                    stack.setTag(stack.getOrCreateTag());// <-- data injection here!!
+                    return super.onItemRightClick(worldIn, playerIn, handIn);
+                } */
+
+                // about here
+                public final ResourceLocation book = new ResourceLocation(Jacko.MOD_ID, "extras/book");
+
+                public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+                    //ResourceLocation.
+                    stack.setTag(stack.getOrCreateTag());// <-- data injection here!!
+                }
+
+                /* public boolean shouldSyncTag() {
+                    return false;
+                } */
+            };
             bookItem.setRegistryName(Jacko.MOD_ID, "book");
             event.getRegistry().register(bookItem);
 

@@ -119,5 +119,6 @@
   "title": "Libra Codex",
   "author": "Jacko",
   "generation": 0,
+  "resolved": true,
   "lore": [ { "translate": "item.jacko.book.lore" } ]
 }
