@@ -30,6 +30,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 //IMC multiple IPC combine to list received values of sent evaluations of closure results
+import java.text.StringCharacterIterator;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -54,35 +55,47 @@ public class Jacko {
         // Register the processIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientStuff);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(final FMLCommonSetupEvent event) {
-        // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+    private void fromMod(String toShow, Object extra) {
+        if(extra == null) {
+            LOGGER.info("[" + Jacko.MOD_ID + "]: " + toShow);
+        } else {
+            LOGGER.info("[" + Jacko.MOD_ID + "]: " + toShow, extra);
+        }
     }
 
-    private void doClientStuff(final FMLClientSetupEvent event) {
+    private void fromMod(String toShow) {
+        fromMod(toShow, null);
+    }
+
+    private void setup(final FMLCommonSetupEvent event) {
+        // some preinit code
+        fromMod("setup()");
+        //LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+    }
+
+    private void clientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
-        LOGGER.info("Got game settings {}",
-                event.getMinecraftSupplier().get().gameSettings);
-        //IMC supplier and field
+        fromMod("clientStuff()");
+        /*fromMod("Got game settings {}",
+                event.getMinecraftSupplier().get().gameSettings); */
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         // some example code to dispatch IMC to another mod
-        InterModComms.sendTo(Jacko.MOD_ID, "hello_world",
-                () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+        InterModComms.sendTo(Jacko.MOD_ID, "enqueueIMC",
+                () -> { fromMod("enqueueIMC()"); return "IMC TEST OK!";});
         //binding element manufacture to supply
     }
 
     private void processIMC(final InterModProcessEvent event) {
         // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC {}", event.getIMCStream().
+        fromMod("processIMC() -> Got IMC {}", event.getIMCStream().
                 map(m -> m.getMessageSupplier().get()).
                 collect(Collectors.toList()));
         //collect all supplied as a list
@@ -92,17 +105,17 @@ public class Jacko {
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
-        LOGGER.info("HELLO from server starting");
+        fromMod("onServerStarting()");
         event.getServer().getCommandManager().getDispatcher().register(
                 Commands.literal(Jacko.MOD_ID)
                         .requires(source -> source.hasPermissionLevel(4))
-                        .then(
+                        /* .then(
                                 Commands.argument("foo_bar", integer())
                                         .executes(context -> {
                                             System.out.println("Bar is " + getInteger(context, "bar"));
                                             return 1;
                                         })
-                        )
+                        ) */
                         .executes(context -> {
                             System.out.println("Hi, mod Jacko is loaded.");
                             return 1;
