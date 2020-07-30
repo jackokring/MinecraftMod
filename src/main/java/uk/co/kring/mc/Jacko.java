@@ -269,7 +269,13 @@ public class Jacko {
 
             itemP = new WrittenBookItem.Properties().group(customItemGroup);
                     //.maxStackSize(BOOK_STACK_SIZE);
-            Item bookItem = new WritableBookItem(itemP);
+            WrittenBookItem bookItem = new WrittenBookItem(itemP);
+            //the following 2 look like a read and write function pair
+            //bookItem.readShareTag();
+            //bookItem.getShareTag();
+            //perhaps it's bool false and a place where tags are for following 2 methods ...
+            //bookItem.shouldSyncTag();
+            //bookItem.getTags();
             bookItem.setRegistryName(Jacko.MOD_ID, "book");
             event.getRegistry().register(bookItem);
 
