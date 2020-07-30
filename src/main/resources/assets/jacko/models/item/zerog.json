@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:potion",
+  "parent": "minecraft:item/potion",
   "Potion":"minecraft:water",
   "CustomPotionEffects": [
       { "Id": 28,

@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:written_book",
+  "parent": "minecraft:item/written_book",
   "pages": [
       [
           { "text": "A Story for Life.", "bold": true },
