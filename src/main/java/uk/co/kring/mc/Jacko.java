@@ -93,18 +93,18 @@ public class Jacko {
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
         LOGGER.info("HELLO from server starting");
-        event.getCommandDispatcher().register(
-                Commands.literal("foo")
+        event.getServer().getCommandManager().getDispatcher().register(
+                Commands.literal(Jacko.MOD_ID)
                         .requires(source -> source.hasPermissionLevel(4))
                         .then(
-                                Commands.argument("bar", integer())
+                                Commands.argument("foo_bar", integer())
                                         .executes(context -> {
                                             System.out.println("Bar is " + getInteger(context, "bar"));
                                             return 1;
                                         })
                         )
                         .executes(context -> {
-                            System.out.println("Called foo with no arguments");
+                            System.out.println("Hi, mod Jacko is loaded.");
                             return 1;
                         })
         );
