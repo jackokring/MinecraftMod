@@ -249,12 +249,17 @@ public class Jacko {
 
         static ItemGroup customItemGroup;
 
-        static void regBlockItemCP(Block name, RegistryEvent.Register<Item> event) {
+        public static void regBlockItemCP(Block name, RegistryEvent.Register<Item> event) {
             Item.Properties itemP = new BlockItem.Properties().group(customItemGroup);
                     //.maxStackSize(MAXIMUM_STACK_SIZE);
             BlockItem item = new BlockItem(name, itemP);
             item.setRegistryName(name.getRegistryName());
             event.getRegistry().register(item);
+        }
+
+        public static void itemStackResourceInject(ItemStack stack, ResourceLocation res) {
+            //ResourceLocation.
+            stack.setTag(stack.getOrCreateTag());// <-- data injection here!!
         }
 
         @SubscribeEvent
@@ -275,20 +280,14 @@ public class Jacko {
             itemP = new WrittenBookItem.Properties().group(customItemGroup);
                     //.maxStackSize(BOOK_STACK_SIZE);
             WrittenBookItem bookItem = new WrittenBookItem(itemP) {
-                /* public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-                    ItemStack stack = playerIn.getHeldItem(handIn);
-                    stack.setTag(stack.getOrCreateTag());// <-- data injection here!!
-                    return super.onItemRightClick(worldIn, playerIn, handIn);
-                } */
-
                 // about here
                 public final ResourceLocation book = new ResourceLocation(Jacko.MOD_ID, "extras/book");
 
                 public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
-                    //ResourceLocation.
-                    stack.setTag(stack.getOrCreateTag());// <-- data injection here!!
+                    itemStackResourceInject(stack, book);
                 }
 
+                //Enchantments ...
                 /* public boolean shouldSyncTag() {
                     return false;
                 } */
