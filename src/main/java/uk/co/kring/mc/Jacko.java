@@ -333,7 +333,14 @@ public class Jacko {
 
         @SubscribeEvent
         public static void registerPotions(final RegistryEvent.Register<Potion> event) {
-            zerog = new Potion();
+            zerog = new Potion() {
+                // about here
+                public final ResourceLocation potion = new ResourceLocation(Jacko.MOD_ID, "extras/zerog");
+
+                public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+                    itemStackResourceInject(stack, potion);// <-- no override??
+                }
+            };
             zerog.setRegistryName(Jacko.MOD_ID, "zerog");
             event.getRegistry().register(zerog);//might need registering
         }
