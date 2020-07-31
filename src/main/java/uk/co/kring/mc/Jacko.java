@@ -260,9 +260,10 @@ public class Jacko {
             event.getRegistry().register(item);
         }
 
-        public static void itemStackResourceInject(ItemStack stack, ResourceLocation res) {
+        public static void itemStackNBTInject(ItemStack stack) {
+            ResourceLocation res = stack.getItem().getRegistryName();
             try {
-                String name = "/assets/" + res.getNamespace() + "/" + res.getPath() + ".json";
+                String name = "/assets/" + res.getNamespace() + "/extras/" + res.getPath() + ".json";
                 InputStream in = Jacko.class.getResourceAsStream(name);
                 String text = IOUtils.toString(in, StandardCharsets.UTF_8.name());
                 in.close();
@@ -293,11 +294,8 @@ public class Jacko {
             itemP = new WrittenBookItem.Properties().group(customItemGroup);
                     //.maxStackSize(BOOK_STACK_SIZE);
             WrittenBookItem bookItem = new WrittenBookItem(itemP) {
-                // about here
-                public final ResourceLocation book = new ResourceLocation(Jacko.MOD_ID, "extras/book");
-
                 public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
-                    itemStackResourceInject(stack, book);
+                    itemStackNBTInject(stack);
                 }
 
                 //Enchantments ...
@@ -311,11 +309,8 @@ public class Jacko {
             itemP = new PotionItem.Properties().group(customItemGroup);
                     //.maxStackSize(POTION_STACK_SIZE);
             Item potionItem = new PotionItem(itemP) {
-                // about here
-                public final ResourceLocation potion = new ResourceLocation(Jacko.MOD_ID, "extras/zerog");
-
                 public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
-                    itemStackResourceInject(stack, potion);
+                    itemStackNBTInject(stack);
                 }
             };
             potionItem.setRegistryName(Jacko.MOD_ID, "zerog");
