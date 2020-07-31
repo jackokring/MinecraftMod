@@ -7,12 +7,12 @@ import net.minecraft.block.pattern.BlockMatcher;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -31,8 +31,11 @@ import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import uk.co.kring.mc.calculationprovider.CalculationProviderRedstoneBlock;
 import uk.co.kring.mc.tileentities.DeltaTileEntity;
 import uk.co.kring.mc.tileentities.PiTileEntity;
@@ -69,7 +72,7 @@ public class Jacko {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void fromMod(String toShow, Object extra) {
+    private static void fromMod(String toShow, Object extra) {
         if(extra == null) {
             LOGGER.info("[" + Jacko.MOD_ID + "]: " + toShow);
         } else {
@@ -77,7 +80,7 @@ public class Jacko {
         }
     }
 
-    private void fromMod(String toShow) {
+    private static void fromMod(String toShow) {
         fromMod(toShow, null);
     }
 
@@ -258,9 +261,18 @@ public class Jacko {
         }
 
         public static void itemStackResourceInject(ItemStack stack, ResourceLocation res) {
-            //ResourceLocation.
-            stack.setTag(stack.getOrCreateTag());// <-- data injection here!!
-            //now to find a resource loader
+            try {
+                String name = "/assets/" + res.getNamespace() + "/" + res.getPath() + ".json";
+                InputStream in = Jacko.class.getResourceAsStream(name);
+                String text = IOUtils.toString(in, StandardCharsets.UTF_8.name());
+                in.close();
+                CompoundNBT nbt = JsonToNBT.getTagFromJson(text);
+                CompoundNBT already = stack.getOrCreateTag();
+                already.merge(nbt);
+                stack.setTag(already);
+            } catch(Exception ex) {
+                fromMod("No valid NBT resource {}", res.getNamespace() + ":" + res.getPath());
+            }
         }
 
         @SubscribeEvent
