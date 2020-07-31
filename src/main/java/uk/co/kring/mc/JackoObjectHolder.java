@@ -13,7 +13,7 @@ import uk.co.kring.mc.tileentities.UpsilonTileEntity;
 public class JackoObjectHolder {
     //version 1.0
     //hold references for use internal
-    public static Potion zerog;
+    //public static Potion zerog;
     public static TileEntityType<SigmaTileEntity> tileEntitySigma;
     public static TileEntityType<DeltaTileEntity> tileEntityDelta;
     public static TileEntityType<UpsilonTileEntity> tileEntityUpsilon;

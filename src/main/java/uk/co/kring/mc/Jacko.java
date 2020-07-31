@@ -260,6 +260,7 @@ public class Jacko {
         public static void itemStackResourceInject(ItemStack stack, ResourceLocation res) {
             //ResourceLocation.
             stack.setTag(stack.getOrCreateTag());// <-- data injection here!!
+            //now to find a resource loader
         }
 
         @SubscribeEvent
@@ -297,7 +298,14 @@ public class Jacko {
 
             itemP = new PotionItem.Properties().group(customItemGroup);
                     //.maxStackSize(POTION_STACK_SIZE);
-            Item potionItem = new PotionItem(itemP);
+            Item potionItem = new PotionItem(itemP) {
+                // about here
+                public final ResourceLocation potion = new ResourceLocation(Jacko.MOD_ID, "extras/zerog");
+
+                public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+                    itemStackResourceInject(stack, potion);
+                }
+            };
             potionItem.setRegistryName(Jacko.MOD_ID, "zerog");
             event.getRegistry().register(potionItem);
 
@@ -333,16 +341,7 @@ public class Jacko {
 
         @SubscribeEvent
         public static void registerPotions(final RegistryEvent.Register<Potion> event) {
-            zerog = new Potion() {
-                // about here
-                public final ResourceLocation potion = new ResourceLocation(Jacko.MOD_ID, "extras/zerog");
 
-                public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
-                    itemStackResourceInject(stack, potion);// <-- no override??
-                }
-            };
-            zerog.setRegistryName(Jacko.MOD_ID, "zerog");
-            event.getRegistry().register(zerog);//might need registering
         }
     }
 }
